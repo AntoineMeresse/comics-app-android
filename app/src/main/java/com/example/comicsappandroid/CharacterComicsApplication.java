@@ -2,6 +2,9 @@ package com.example.comicsappandroid;
 
 import android.app.Application;
 
+import com.example.comicsappandroid.data.di.FakeDependencyInjection;
+import com.facebook.stetho.Stetho;
+
 public class CharacterComicsApplication extends Application {
 
     // Don't upload your api key on github
@@ -12,5 +15,7 @@ public class CharacterComicsApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Stetho.initializeWithDefaults(this);
+        FakeDependencyInjection.setContext(this);
     }
 }
