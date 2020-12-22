@@ -10,7 +10,7 @@ public class CharacterComicsApplication extends Application {
     // Don't upload your api key on github
     // I'll init this file with an empty api_key and push it to github.
     // Then it will be ignore in .gitignore
-    public static final String API_KEY = "";
+    public static final String API_KEY = "5a80f16fd8a7c44adfa84596f9fa2fd0df94858c";
 
     @Override
     public void onCreate() {
