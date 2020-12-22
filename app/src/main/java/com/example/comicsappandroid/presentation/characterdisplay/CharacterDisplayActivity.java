@@ -2,6 +2,7 @@ package com.example.comicsappandroid.presentation.characterdisplay;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class CharacterDisplayActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

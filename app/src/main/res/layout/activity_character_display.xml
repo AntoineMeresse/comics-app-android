@@ -18,8 +18,8 @@
         app:itemTextColor="@drawable/bottom_navigation_colors"
         app:menu="@menu/bottom_navigation_menu" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_navbar"
