@@ -1,10 +1,12 @@
-package com.example.comicsappandroid;
+package com.example.comicsappandroid.presentation.characterdisplay;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.comicsappandroid.R;
+
+public class CharacterDisplayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
