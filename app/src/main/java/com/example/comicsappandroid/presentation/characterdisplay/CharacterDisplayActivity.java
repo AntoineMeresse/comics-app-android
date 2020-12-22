@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.MenuItem;
 
 import com.example.comicsappandroid.R;
@@ -15,36 +16,56 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class CharacterDisplayActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    private SparseArray<Fragment> fragmentSparseArray;
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_display);
-        setupBottomView();
+        setupNavigationElements();
     }
 
-    private void setupBottomView() {
+    private void setupNavigationElements() {
+
+        fragmentSparseArray = new SparseArray<>(2);
+
         bottomNavigationView = findViewById(R.id.bottom_navbar);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        updateMainFragment(item.getItemId());
+
+                        Fragment f = fragmentSparseArray.get(item.getOrder());
+
+                        if (f == null) {
+                            switch (item.getOrder()) {
+                                case 0:
+                                    // TODO
+                                    //  f = SelectedFragment.newInstance(); example
+                                    break;
+                                case 1:
+                                    // TODO
+                                    break;
+                            }
+                            fragmentSparseArray.put(item.getOrder(), f);
+                        }
+
+                        currentFragment = f;
+                        replaceFragment(currentFragment);
+
                         return true;
                     }
                 }
         );
     }
 
-    private Boolean updateMainFragment(Integer itemID) {
-        switch (itemID) {
-            case R.id.item_menu_characters:
-                Log.d("FRAGMENT Infos :", "Update Character Fragment");
-                break;
-            case R.id.item_menu_favorite:
-                Log.d("FRAGMENT Infos :", "Update Favorite Fragment");
-                break;
+    private void replaceFragment(Fragment newFragment) {
+        if (newFragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, newFragment)
+                    .addToBackStack("null")
+                    .commit();
         }
-        return true;
     }
 }
