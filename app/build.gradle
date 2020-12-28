@@ -40,4 +40,16 @@ dependencies {
 
     // 2 - Bottom ToolBar
     implementation 'com.google.android.material:material:1.2.1'
+
+    // 3 - ReactiveX
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // 4 - GSON
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // 5 - Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
 }
