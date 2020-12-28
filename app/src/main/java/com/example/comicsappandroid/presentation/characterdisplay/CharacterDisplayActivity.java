@@ -24,7 +24,9 @@ public class CharacterDisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_display);
+
         setupNavigationElements();
+        bottomNavigationView.setSelectedItemId(R.id.item_menu_characters);
     }
 
     private void setupNavigationElements() {
@@ -37,29 +39,45 @@ public class CharacterDisplayActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                        Fragment f = fragmentSparseArray.get(item.getOrder());
+                        int index = getIndex(item.getItemId());
 
-                        if (f == null) {
-                            switch (item.getOrder()) {
-                                case 0:
-                                    Log.d("Init fragment", "Search Fragment Created");
-                                    f = SearchFragment.newInstance();
-                                    break;
-                                case 1:
-                                    Log.d("Init fragment", "Favorite Fragment Created");
-                                    f = SearchFragment.newInstance(); // to replace
-                                    break;
+                        if (index >= 0) {
+
+                            Fragment f = fragmentSparseArray.get(index);
+                            Log.e("======", "onNavigationItemSelected: " + item.getItemId());
+
+                            if (f == null) {
+                                switch (index) {
+                                    case 0:
+                                        Log.d("Init fragment", "Search Fragment Created");
+                                        f = SearchFragment.newInstance();
+                                        break;
+                                    case 1:
+                                        Log.d("Init fragment", "Favorite Fragment Created");
+                                        //f = SearchFragment.newInstance(); // to replace
+                                        break;
+                                }
+                                fragmentSparseArray.put(index, f);
                             }
-                            fragmentSparseArray.put(item.getOrder(), f);
+
+                            currentFragment = f;
+                            replaceFragment(currentFragment);
                         }
-
-                        currentFragment = f;
-                        replaceFragment(currentFragment);
-
                         return true;
                     }
                 }
         );
+    }
+
+    /**
+     * This method was created because getOrder was always returning 0
+     * @param fragmentID Integer
+     * @return int
+     */
+    private int getIndex(Integer fragmentID){
+        if(fragmentID == R.id.item_menu_characters) return 0;
+        else if (fragmentID == R.id.item_menu_favorite) return 1;
+        return -1;
     }
 
     private void replaceFragment(Fragment newFragment) {
