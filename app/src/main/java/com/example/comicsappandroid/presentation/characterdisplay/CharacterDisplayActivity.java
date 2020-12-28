@@ -11,6 +11,7 @@ import android.util.SparseArray;
 import android.view.MenuItem;
 
 import com.example.comicsappandroid.R;
+import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CharacterDisplayActivity extends AppCompatActivity {
@@ -41,11 +42,12 @@ public class CharacterDisplayActivity extends AppCompatActivity {
                         if (f == null) {
                             switch (item.getOrder()) {
                                 case 0:
-                                    // TODO
-                                    //  f = SelectedFragment.newInstance(); example
+                                    Log.d("Init fragment", "Search Fragment Created");
+                                    f = SearchFragment.newInstance();
                                     break;
                                 case 1:
-                                    // TODO
+                                    Log.d("Init fragment", "Favorite Fragment Created");
+                                    f = SearchFragment.newInstance(); // to replace
                                     break;
                             }
                             fragmentSparseArray.put(item.getOrder(), f);
