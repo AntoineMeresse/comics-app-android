@@ -11,6 +11,7 @@ import android.util.SparseArray;
 import android.view.MenuItem;
 
 import com.example.comicsappandroid.R;
+import com.example.comicsappandroid.presentation.characterdisplay.fragments.favorite.FavoriteFragment;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -54,7 +55,7 @@ public class CharacterDisplayActivity extends AppCompatActivity {
                                         break;
                                     case 1:
                                         Log.d("Init fragment", "Favorite Fragment Created");
-                                        //f = SearchFragment.newInstance(); // to replace
+                                        f = FavoriteFragment.newInstance(); // to replace
                                         break;
                                 }
                                 fragmentSparseArray.put(index, f);
