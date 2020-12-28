@@ -2,7 +2,17 @@ package com.example.comicsappandroid.data.di;
 
 import android.content.Context;
 
+import com.example.comicsappandroid.CharacterComicsApplication;
+import com.example.comicsappandroid.data.api.ComicsDisplayService;
+import com.example.comicsappandroid.data.api.models.Character;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * This FakeDependencyInjection is inspired from our Android Class Tutorial.
@@ -12,6 +22,9 @@ public class FakeDependencyInjection {
 
     private static Context context;
     private static Gson jsonSerializer;
+
+    private static ComicsDisplayService comicsDisplayService;
+    private static Retrofit retrofit;
 
     /**
      * Method to set a context to the FakeDependencyInjection
@@ -31,6 +44,25 @@ public class FakeDependencyInjection {
             jsonSerializer = new Gson();
         }
         return jsonSerializer;
+    }
+
+    public static Retrofit getRetrofit() {
+        if (retrofit == null) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(interceptor)
+                    .addNetworkInterceptor(new StethoInterceptor())
+                    .build();
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(CharacterComicsApplication.API_URL)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create(getJsonSerializer()))
+                    .build();
+        }
+        return retrofit;
     }
 
 }
