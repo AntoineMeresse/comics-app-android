@@ -48,10 +48,10 @@ public class SearchViewModel extends ViewModel {
 
     // Search Character
 
-    public void searchCharacters() {
+    public void searchCharacters(String filter) {
         isDataLoading.postValue(true);
         compositeDisposable.clear();
-        compositeDisposable.add(characterDisplayRepository.getSearchResponse()
+        compositeDisposable.add(characterDisplayRepository.getSearchResponse(filter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(

@@ -50,7 +50,7 @@ public class SearchFragment extends Fragment {
         setRecyclerView();
         registerViewModels();
 
-        searchViewModel.searchCharacters();
+        searchViewModel.searchCharacters("name:spider-man");
     }
 
     private void registerViewModels() {

@@ -14,7 +14,7 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
     }
 
     @Override
-    public Single<CharacterSearchResponse> getSearchResponse() {
-        return characterDisplayRemoteDS.searchCharacters();
+    public Single<CharacterSearchResponse> getSearchResponse(String filter) {
+        return characterDisplayRemoteDS.searchCharacters(filter);
     }
 }

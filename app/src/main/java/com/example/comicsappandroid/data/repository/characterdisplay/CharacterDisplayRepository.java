@@ -6,5 +6,5 @@ import io.reactivex.Single;
 
 public interface CharacterDisplayRepository {
     // Remote
-    Single<CharacterSearchResponse> getSearchResponse();
+    Single<CharacterSearchResponse> getSearchResponse(String filter);
 }
