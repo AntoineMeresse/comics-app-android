@@ -45,6 +45,10 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         this.characterActionInterface = characterActionInterface;
     }
 
+    public CharacterAdapter() {
+        this.characterViewItemList = new ArrayList<>();
+    }
+
     public void bindViewModels(List<CharacterViewItem> characterViewItemList) {
         this.characterViewItemList.clear();
         this.characterViewItemList.addAll(characterViewItemList);

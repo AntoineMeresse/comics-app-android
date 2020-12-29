@@ -11,6 +11,7 @@ import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDi
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.MapperCharacterToViewModel;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterViewItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -27,8 +28,8 @@ public class SearchViewModel extends ViewModel {
 
     public SearchViewModel(CharacterDisplayRepository characterDisplayRepository){
         this.characterDisplayRepository = characterDisplayRepository;
-        this.compositeDisposable = new CompositeDisposable();
-        this.mapperCharacterToViewModel = new MapperCharacterToViewModel();
+        compositeDisposable = new CompositeDisposable();
+        mapperCharacterToViewModel = new MapperCharacterToViewModel();
     }
 
     // Mutable Live Data
@@ -59,7 +60,14 @@ public class SearchViewModel extends ViewModel {
                             @Override
                             public void onSuccess(CharacterSearchResponse characterSearchResponse) {
                                 List<CharacterComics> characterComics = characterSearchResponse.getCharacterList();
-                                characters.setValue(mapperCharacterToViewModel.map(characterComics));
+
+                                List<CharacterComics> characterComicsTMP = new ArrayList<>();
+                                CharacterComics c = new CharacterComics();
+                                c.setName("Antoine");
+                                c.setId(1);
+                                characterComicsTMP.add(c);
+
+                                characters.setValue(mapperCharacterToViewModel.map(characterComicsTMP));
                                 isDataLoading.postValue(false);
                             }
 
