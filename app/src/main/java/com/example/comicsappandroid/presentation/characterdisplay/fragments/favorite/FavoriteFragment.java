@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.comicsappandroid.R;
+import com.example.comicsappandroid.presentation.viewmodel.FavoriteViewModel;
 
 public class FavoriteFragment extends Fragment {
 

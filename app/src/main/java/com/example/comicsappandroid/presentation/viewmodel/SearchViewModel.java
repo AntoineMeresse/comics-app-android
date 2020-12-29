@@ -1,4 +1,4 @@
-package com.example.comicsappandroid.presentation.characterdisplay.fragments.search;
+package com.example.comicsappandroid.presentation.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 

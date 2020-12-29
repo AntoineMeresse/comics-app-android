@@ -1,4 +1,4 @@
-package com.example.comicsappandroid.presentation.characterdisplay.fragments.favorite;
+package com.example.comicsappandroid.presentation.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
