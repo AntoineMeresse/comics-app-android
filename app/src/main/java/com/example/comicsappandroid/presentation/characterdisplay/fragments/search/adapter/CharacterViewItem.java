@@ -1,5 +1,7 @@
 package com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter;
 
+import com.example.comicsappandroid.data.api.models.CharacterImage;
+
 public class CharacterViewItem {
 
     public String getCharacterID() {
@@ -18,7 +20,16 @@ public class CharacterViewItem {
         this.characterName = characterName;
     }
 
+    public CharacterImage getCharacterImage() {
+        return characterImage;
+    }
+
+    public void setCharacterImage(CharacterImage characterImage) {
+        this.characterImage = characterImage;
+    }
+
     private String characterID;
     private String characterName;
+    private CharacterImage characterImage;
 
 }
