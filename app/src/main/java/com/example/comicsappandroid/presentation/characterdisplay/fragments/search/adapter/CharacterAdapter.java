@@ -2,10 +2,12 @@ package com.example.comicsappandroid.presentation.characterdisplay.fragments.sea
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.comicsappandroid.R;
 import com.example.comicsappandroid.data.api.models.Character;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
@@ -13,10 +15,21 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     public static class CharacterViewHolder extends RecyclerView.ViewHolder {
 
         private View view;
+        private CharacterActionInterface characterActionInterface;
+
+        private CharacterViewItem characterViewItem;
+        private TextView characterNameTextView;
 
         public CharacterViewHolder(View view, final CharacterActionInterface characterActionInterface) {
             super(view);
             this.view = view;
+            this.characterActionInterface = characterActionInterface;
+            this.characterNameTextView = view.findViewById(R.id.character_name);
+        }
+
+        void bind(CharacterViewItem characterViewItem) {
+            this.characterViewItem = characterViewItem;
+            this.characterNameTextView.setText(characterViewItem.getCharacterName());
         }
     }
 
