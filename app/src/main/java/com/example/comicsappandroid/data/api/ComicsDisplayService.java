@@ -7,5 +7,5 @@ import retrofit2.http.Query;
 
 public interface ComicsDisplayService {
     @GET("characters")
-    Single<CharacterSearchResponse> searchCharacters(@Query("api_key") String apiKey);
+    Single<CharacterSearchResponse> searchCharacters(@Query("api_key") String apiKey, @Query("format") String format);
 }

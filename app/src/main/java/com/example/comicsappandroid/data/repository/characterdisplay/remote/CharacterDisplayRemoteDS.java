@@ -17,6 +17,6 @@ public class CharacterDisplayRemoteDS {
     // 1 méthode par requête d'api dans ComicsDisplayService
 
     public Single<CharacterSearchResponse> searchCharacters() {
-        return this.comicsDisplayService.searchCharacters(CharacterComicsApplication.API_KEY);
+        return this.comicsDisplayService.searchCharacters(CharacterComicsApplication.API_KEY, CharacterComicsApplication.API_FORMAT);
     }
 }
