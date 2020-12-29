@@ -63,11 +63,11 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     @Override
     public void onBindViewHolder(@NonNull CharacterAdapter.CharacterViewHolder holder, int position) {
-        // TODO
+        holder.bind(this.characterViewItemList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.characterViewItemList.size();
     }
 }
