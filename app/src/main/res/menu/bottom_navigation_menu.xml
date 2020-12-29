@@ -4,13 +4,13 @@
     <item
         android:id="@+id/item_menu_characters"
         android:enabled="true"
+        android:icon="@drawable/ic_list_icon"
         android:title="@string/tab_1"
-        android:icon="@drawable/ic_launcher_background"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/item_menu_favorite"
         android:enabled="true"
+        android:icon="@drawable/ic_fav_outline"
         android:title="@string/tab_2"
-        android:icon="@drawable/ic_launcher_background"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 </menu>
