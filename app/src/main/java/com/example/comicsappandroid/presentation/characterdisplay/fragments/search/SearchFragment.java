@@ -1,5 +1,6 @@
 package com.example.comicsappandroid.presentation.characterdisplay.fragments.search;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -13,11 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.comicsappandroid.R;
+import com.example.comicsappandroid.data.di.FakeDependencyInjection;
 import com.example.comicsappandroid.presentation.viewmodel.SearchViewModel;
 
 public class SearchFragment extends Fragment {
 
-    private SearchViewModel mViewModel;
+    private SearchViewModel searchViewModel;
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -32,8 +34,13 @@ public class SearchFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
-        // TODO: Use the ViewModel
+
+        registerViewModels();
+    }
+
+    private void registerViewModels() {
+        searchViewModel = new ViewModelProvider(requireActivity(),
+                FakeDependencyInjection.getViewModelFactory()).get(SearchViewModel.class);
     }
 
 }
