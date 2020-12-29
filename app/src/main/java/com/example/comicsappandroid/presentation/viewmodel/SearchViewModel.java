@@ -72,4 +72,9 @@ public class SearchViewModel extends ViewModel {
                 )
         );
     }
+
+    public void cancelSubscription() {
+        compositeDisposable.clear();
+        isDataLoading.setValue(false);
+    }
 }
