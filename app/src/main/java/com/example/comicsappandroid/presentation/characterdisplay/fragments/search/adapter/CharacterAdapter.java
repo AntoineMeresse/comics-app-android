@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.comicsappandroid.R;
-import com.example.comicsappandroid.data.api.models.Character;
 
 import java.util.ArrayList;
 import java.util.List;

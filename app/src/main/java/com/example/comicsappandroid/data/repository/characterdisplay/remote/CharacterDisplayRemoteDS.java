@@ -2,7 +2,7 @@ package com.example.comicsappandroid.data.repository.characterdisplay.remote;
 
 import com.example.comicsappandroid.CharacterComicsApplication;
 import com.example.comicsappandroid.data.api.ComicsDisplayService;
-import com.example.comicsappandroid.data.api.models.Characters;
+import com.example.comicsappandroid.data.api.models.CharacterSearchResponse;
 
 import io.reactivex.Single;
 
@@ -16,7 +16,7 @@ public class CharacterDisplayRemoteDS {
 
     // 1 méthode par requête d'api dans ComicsDisplayService
 
-    public Single<Characters> searchCharacters() {
+    public Single<CharacterSearchResponse> searchCharacters() {
         return this.comicsDisplayService.searchCharacters(CharacterComicsApplication.API_KEY);
     }
 }

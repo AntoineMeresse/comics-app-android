@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.example.comicsappandroid.CharacterComicsApplication;
 import com.example.comicsappandroid.data.api.ComicsDisplayService;
-import com.example.comicsappandroid.data.api.models.Character;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayDataRepository;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayRepository;
 import com.example.comicsappandroid.data.repository.characterdisplay.remote.CharacterDisplayRemoteDS;

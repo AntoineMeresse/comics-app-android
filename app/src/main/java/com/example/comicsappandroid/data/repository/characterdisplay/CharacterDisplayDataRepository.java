@@ -1,6 +1,6 @@
 package com.example.comicsappandroid.data.repository.characterdisplay;
 
-import com.example.comicsappandroid.data.api.models.Characters;
+import com.example.comicsappandroid.data.api.models.CharacterSearchResponse;
 import com.example.comicsappandroid.data.repository.characterdisplay.remote.CharacterDisplayRemoteDS;
 
 import io.reactivex.Single;
@@ -14,7 +14,7 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
     }
 
     @Override
-    public Single<Characters> getSearchResponse() {
+    public Single<CharacterSearchResponse> getSearchResponse() {
         return null;
     }
 }
