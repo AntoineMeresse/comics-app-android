@@ -13,8 +13,8 @@
 
         <TextView
             android:id="@+id/character_name"
-            android:layout_width="103dp"
-            android:layout_height="26dp"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:textSize="14dp"
