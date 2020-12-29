@@ -60,21 +60,7 @@ public class SearchViewModel extends ViewModel {
                             @Override
                             public void onSuccess(CharacterSearchResponse characterSearchResponse) {
                                 List<CharacterComics> characterComics = characterSearchResponse.getCharacterList();
-
-                                List<CharacterComics> characterComicsTMP = new ArrayList<>();
-                                CharacterComics c = new CharacterComics();
-                                c.setName("Antoine");
-                                c.setId(1);
-                                characterComicsTMP.add(c);
-
-                                CharacterComics c2 = new CharacterComics();
-                                c2.setName("Meresse");
-                                c2.setId(2);
-                                characterComicsTMP.add(c2);
-
-                                Log.e("TEST", "onSuccess: "+characterComicsTMP.size());
-
-                                characters.setValue(mapperCharacterToViewModel.map(characterComicsTMP));
+                                characters.setValue(mapperCharacterToViewModel.map(characterComics));
                                 isDataLoading.postValue(false);
                             }
 

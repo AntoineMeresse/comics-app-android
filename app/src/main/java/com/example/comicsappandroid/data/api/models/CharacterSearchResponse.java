@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CharacterSearchResponse {
 
-    @SerializedName("result")
+    @SerializedName("results")
     List<CharacterComics> characterList;
 
     public List<CharacterComics> getCharacterList() {
