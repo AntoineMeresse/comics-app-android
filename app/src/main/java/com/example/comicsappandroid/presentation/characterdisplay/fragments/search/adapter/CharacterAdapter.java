@@ -1,5 +1,7 @@
 package com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.comicsappandroid.R;
 import com.example.comicsappandroid.data.api.models.Character;
+
+import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
 
@@ -33,10 +37,16 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         }
     }
 
+    private CharacterActionInterface characterActionInterface;
+    private List<CharacterViewItem> characterViewItemList;
+
     @NonNull
     @Override
     public CharacterAdapter.CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.recyclerview_item_character,parent,false);
+        return new CharacterViewHolder(view, characterActionInterface);
     }
 
     @Override
