@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.comicsappandroid.R;
 import com.example.comicsappandroid.data.api.models.Character;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
@@ -39,6 +40,17 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     private CharacterActionInterface characterActionInterface;
     private List<CharacterViewItem> characterViewItemList;
+
+    public CharacterAdapter(CharacterActionInterface characterActionInterface) {
+        this.characterViewItemList = new ArrayList<>();
+        this.characterActionInterface = characterActionInterface;
+    }
+
+    public void bindViewModels(List<CharacterViewItem> characterViewItemList) {
+        this.characterViewItemList.clear();
+        this.characterViewItemList.addAll(characterViewItemList);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
