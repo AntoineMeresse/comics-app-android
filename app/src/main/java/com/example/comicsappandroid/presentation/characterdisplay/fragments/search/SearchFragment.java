@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setRecyclerView();
+        setupRecyclerView();
         registerViewModels();
 
         searchViewModel.searchCharacters("name:spider-man");
@@ -65,11 +65,10 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    private void setRecyclerView() {
+    private void setupRecyclerView() {
         recyclerView = rootView.findViewById(R.id.recycler_view_search);
         characterAdapter = new CharacterAdapter();
         recyclerView.setAdapter(characterAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-
 }
