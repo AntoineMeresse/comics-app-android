@@ -5,6 +5,10 @@ import android.content.Context;
 import com.example.comicsappandroid.CharacterComicsApplication;
 import com.example.comicsappandroid.data.api.ComicsDisplayService;
 import com.example.comicsappandroid.data.api.models.Character;
+import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayDataRepository;
+import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayRepository;
+import com.example.comicsappandroid.data.repository.characterdisplay.remote.CharacterDisplayRemoteDS;
+import com.example.comicsappandroid.presentation.viewmodel.ViewModelFactory;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 
@@ -25,6 +29,9 @@ public class FakeDependencyInjection {
 
     private static ComicsDisplayService comicsDisplayService;
     private static Retrofit retrofit;
+
+    private static CharacterDisplayRepository characterDisplayRepository;
+    private static ViewModelFactory viewModelFactory;
 
     /**
      * Method to set a context to the FakeDependencyInjection
@@ -63,6 +70,25 @@ public class FakeDependencyInjection {
                     .build();
         }
         return retrofit;
+    }
+
+    public static ComicsDisplayService getComicsDisplayService() {
+        if (comicsDisplayService == null) comicsDisplayService = getRetrofit().create(ComicsDisplayService.class);
+        return comicsDisplayService;
+    }
+
+    public static CharacterDisplayRepository getCharacterDisplayRepository(){
+        if (characterDisplayRepository == null) {
+            characterDisplayRepository = new CharacterDisplayDataRepository(
+                    new CharacterDisplayRemoteDS(getComicsDisplayService())
+            );
+        }
+        return characterDisplayRepository;
+    }
+
+    public static ViewModelFactory getViewModelFactory(){
+        if (viewModelFactory == null) viewModelFactory = new ViewModelFactory(getCharacterDisplayRepository());
+        return viewModelFactory;
     }
 
 }
