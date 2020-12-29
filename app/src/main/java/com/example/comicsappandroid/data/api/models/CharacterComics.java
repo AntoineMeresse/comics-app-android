@@ -1,5 +1,7 @@
 package com.example.comicsappandroid.data.api.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Character Model
  * https://comicvine.gamespot.com/api/documentation
@@ -23,4 +25,15 @@ public class CharacterComics {
 
     private String name;
     private Integer id;
+
+    @SerializedName("image")
+    private CharacterImage characterImage;
+
+    public CharacterImage getCharacterImage() {
+        return characterImage;
+    }
+
+    public void setCharacterImage(CharacterImage characterImage) {
+        this.characterImage = characterImage;
+    }
 }
