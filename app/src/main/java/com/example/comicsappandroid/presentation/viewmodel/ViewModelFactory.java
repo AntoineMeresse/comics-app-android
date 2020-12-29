@@ -17,6 +17,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return null;
+        if(modelClass.isAssignableFrom(SearchViewModel.class)) {
+            return (T) new SearchViewModel(characterDisplayRepository);
+        }
+        throw new IllegalArgumentException();
     }
 }
