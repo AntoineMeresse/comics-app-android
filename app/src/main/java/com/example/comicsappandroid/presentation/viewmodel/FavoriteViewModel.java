@@ -20,4 +20,26 @@ public class FavoriteViewModel extends ViewModel {
         this.characterDisplayRepository = characterDisplayRepository;
         this.compositeDisposable = new CompositeDisposable();
     }
+
+    /**
+     * Method to add a character to favorite
+     * @param id character id
+     */
+    public void addToFavorite(String id){
+        compositeDisposable.add(characterDisplayRepository.insertCharacter(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableCompletableObserver() {
+                    @Override
+                    public void onComplete() {
+                        Log.d("ADDFAVORITE", "onComplete: True");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        System.out.println(e.toString());
+                    }
+                })
+        );
+    }
 }
