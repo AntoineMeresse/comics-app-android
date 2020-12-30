@@ -25,6 +25,7 @@ import com.example.comicsappandroid.presentation.characterdisplay.fragments.sear
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterAdapter;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterViewItem;
 import com.example.comicsappandroid.presentation.viewmodel.SearchViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 import java.util.Timer;
@@ -39,6 +40,9 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
 
     private SearchView searchView;
     private ProgressBar progressBar;
+
+    private FloatingActionButton fab;
+    private boolean fabState;
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -60,6 +64,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         setupSearchView();
         setupRecyclerView();
         registerViewModels();
+        setupFabButton();
 
         initSearchCharacters();
     }
@@ -132,5 +137,24 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     @Override
     public void onHeartClick(String characterID, boolean isFav) {
         Log.d("HEARTBUTTONCLICLED", "onHeartClick: "+characterID);
+    }
+
+    public void setupFabButton() {
+        fab = rootView.findViewById(R.id.floatingActionButtonChangeGrid);
+        fabState = false;
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("FAB", "onClick: "+fabState);
+                if(fabState) {
+                    //TODO
+                }
+                else {
+                    //TODO
+                }
+                fabState = !fabState; // Change fabState
+            }
+        });
     }
 }
