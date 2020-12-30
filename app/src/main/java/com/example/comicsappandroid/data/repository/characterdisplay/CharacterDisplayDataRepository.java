@@ -62,7 +62,28 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
 
     @Override
     public Completable deleteCharacter(String id) {
-        return null;
+        // step 1:
+        Single<CharacterSearchResponse> characterSearchResponseSingle =
+                characterDisplayRemoteDS.searchCharacters("id:"+id);
+
+        // step 2:
+        Single<CharacterEntity> characterEntitySingle = characterSearchResponseSingle.map(
+                new Function<CharacterSearchResponse, CharacterEntity>() {
+                    @Override
+                    public CharacterEntity apply(CharacterSearchResponse characterSearchResponse) throws Exception {
+                        return MapperCharacterToCharacterEntity.convertCharacterToCharacterEntity(characterSearchResponse);
+                    }
+                });
+
+        // step 3:
+        Completable characterCompletable = characterEntitySingle.flatMapCompletable(new Function <CharacterEntity, CompletableSource>(){
+            @Override
+            public CompletableSource apply(CharacterEntity characterEntity) throws Exception {
+                return characterDisplayLocalDS.deleteCharacter(characterEntity);
+            }
+        });
+
+        return characterCompletable;
     }
 
     @Override
