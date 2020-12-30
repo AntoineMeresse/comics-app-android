@@ -20,6 +20,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         if(modelClass.isAssignableFrom(SearchViewModel.class)) {
             return (T) new SearchViewModel(characterDisplayRepository);
         }
+        else if (modelClass.isAssignableFrom(FavoriteViewModel.class)) {
+            return (T) new FavoriteViewModel(characterDisplayRepository);
+        }
         throw new IllegalArgumentException();
     }
 }
