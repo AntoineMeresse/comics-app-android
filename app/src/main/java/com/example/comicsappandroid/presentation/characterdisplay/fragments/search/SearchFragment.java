@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.ProgressBar;
 
 import com.example.comicsappandroid.R;
 import com.example.comicsappandroid.data.di.FakeDependencyInjection;
+import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterActionInterface;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterAdapter;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterViewItem;
 import com.example.comicsappandroid.presentation.viewmodel.SearchViewModel;
@@ -28,7 +30,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements CharacterActionInterface {
 
     private SearchViewModel searchViewModel;
     private RecyclerView recyclerView;
@@ -87,7 +89,7 @@ public class SearchFragment extends Fragment {
 
     private void setupRecyclerView() {
         recyclerView = rootView.findViewById(R.id.recycler_view_search);
-        characterAdapter = new CharacterAdapter();
+        characterAdapter = new CharacterAdapter(this);
         recyclerView.setAdapter(characterAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
@@ -125,5 +127,10 @@ public class SearchFragment extends Fragment {
             }
         }
         );
+    }
+
+    @Override
+    public void onHeartClick(String characterID, boolean isFav) {
+        Log.d("HEARTBUTTONCLICLED", "onHeartClick: "+characterID);
     }
 }

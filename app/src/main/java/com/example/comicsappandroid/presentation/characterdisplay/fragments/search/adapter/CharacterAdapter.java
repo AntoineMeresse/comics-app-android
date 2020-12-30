@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,12 +29,18 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
         private ImageView characterImageView;
 
+        // Button fav
+        private ImageButton imageButtonFav;
+
         public CharacterViewHolder(View view, final CharacterActionInterface characterActionInterface) {
             super(view);
             this.view = view;
             this.characterActionInterface = characterActionInterface;
             this.characterNameTextView = view.findViewById(R.id.character_name);
             this.characterImageView = view.findViewById(R.id.character_picture);
+            this.imageButtonFav = view.findViewById(R.id.imageButtonFav);
+
+            setupListeners();
         }
 
         void bind(CharacterViewItem characterViewItem) {
@@ -52,6 +59,22 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
             if(imgUrl != null) {
                 Glide.with(view).load(imgUrl).centerCrop().into(characterImageView);
             }
+        }
+
+        /**
+         * Method to setup all listeners
+         */
+        private void setupListeners() {
+            favSetupListeners();
+        }
+
+        private void favSetupListeners() {
+            imageButtonFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    characterActionInterface.onHeartClick(characterViewItem.getCharacterID(), true);
+                }
+            });
         }
     }
 
