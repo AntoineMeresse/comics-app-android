@@ -59,7 +59,11 @@ public class SearchFragment extends Fragment {
         setupRecyclerView();
         registerViewModels();
 
-        searchViewModel.searchCharacters("name:spider-man");
+        initSearchCharacters();
+    }
+
+    private void initSearchCharacters() {
+        searchViewModel.searchCharacters("");
     }
 
     private void registerViewModels() {
@@ -102,7 +106,10 @@ public class SearchFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(final String newText) {
-                if (newText.length() == 0) searchViewModel.cancelSubscription();
+                if (newText.length() == 0) {
+                    searchViewModel.cancelSubscription();
+                    initSearchCharacters();
+                }
                 else {
                     queryTimer.cancel();
                     queryTimer = new Timer();
