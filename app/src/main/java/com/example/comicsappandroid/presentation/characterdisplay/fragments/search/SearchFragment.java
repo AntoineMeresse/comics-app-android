@@ -26,6 +26,7 @@ import com.example.comicsappandroid.presentation.characterdisplay.fragments.sear
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterAdapter;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterAdapterGrid;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterViewItem;
+import com.example.comicsappandroid.presentation.viewmodel.FavoriteViewModel;
 import com.example.comicsappandroid.presentation.viewmodel.SearchViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,6 +37,8 @@ import java.util.TimerTask;
 public class SearchFragment extends Fragment implements CharacterActionInterface {
 
     private SearchViewModel searchViewModel;
+    private FavoriteViewModel favoriteViewModel;
+
     private RecyclerView recyclerView;
     private CharacterAdapter characterAdapter;
     private CharacterAdapterGrid characterAdapterGrid;
@@ -82,6 +85,9 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     private void registerViewModels() {
         searchViewModel = new ViewModelProvider(requireActivity(),
                 FakeDependencyInjection.getViewModelFactory()).get(SearchViewModel.class);
+
+        favoriteViewModel = new ViewModelProvider(requireActivity(),
+                FakeDependencyInjection.getViewModelFactory()).get(FavoriteViewModel.class);
 
         searchViewModel.getCharacters().observe(getViewLifecycleOwner(), new Observer<List<CharacterViewItem>>() {
             @Override
@@ -151,6 +157,8 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     @Override
     public void onHeartClick(String characterID, boolean isFav) {
         Log.d("HEARTBUTTONCLICLED", "onHeartClick: "+characterID);
+        if (isFav) favoriteViewModel.addToFavorite(characterID);
+        else favoriteViewModel.deleteFromFavorite(characterID);
     }
 
     public void setupFabButton() {

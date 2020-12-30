@@ -98,6 +98,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
                     else {
                         isFavIcon();
                     }
+                    characterActionInterface.onHeartClick(characterViewItem.getCharacterID(), isChecked);
                 }
             });
         }
