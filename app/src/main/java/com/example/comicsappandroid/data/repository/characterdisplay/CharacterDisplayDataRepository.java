@@ -88,6 +88,6 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
 
     @Override
     public Flowable<List<CharacterEntity>> getFavoriteCharacters() {
-        return null;
+        return characterDisplayLocalDS.getFavoriteCharacters();
     }
 }
