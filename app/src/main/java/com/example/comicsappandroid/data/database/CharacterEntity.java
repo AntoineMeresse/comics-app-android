@@ -13,6 +13,14 @@ public class CharacterEntity {
 
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @NonNull
     public Integer getId() {
         return id;
