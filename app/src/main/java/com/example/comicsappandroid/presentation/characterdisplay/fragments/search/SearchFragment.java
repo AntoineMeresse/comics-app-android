@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,6 +45,9 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
 
     private FloatingActionButton fab;
     private boolean fabState;
+
+    private LinearLayoutManager linearLayoutManager;
+    private GridLayoutManager gridLayoutManager;
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -97,7 +101,11 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         recyclerView = rootView.findViewById(R.id.recycler_view_search);
         characterAdapter = new CharacterAdapter(this, getContext());
         recyclerView.setAdapter(characterAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        gridLayoutManager = new GridLayoutManager(getContext(), 2);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
 
     private void setupSearchView() {
@@ -150,9 +158,11 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
                 Log.d("FAB", "onClick: "+fabState);
                 if(fabState) {
                     fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_list));
+                    recyclerView.setLayoutManager(linearLayoutManager);
                 }
                 else {
                     fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_grid));
+                    recyclerView.setLayoutManager(gridLayoutManager);
                 }
                 fabState = !fabState; // Change fabState
             }
