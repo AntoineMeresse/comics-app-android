@@ -1,14 +1,18 @@
 package com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -30,17 +34,22 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         private ImageView characterImageView;
 
         // Button fav
-        private ImageButton imageButtonFav;
+        private ToggleButton favButton;
+        private Context currentContext;
 
-        public CharacterViewHolder(View view, final CharacterActionInterface characterActionInterface) {
+        public CharacterViewHolder(View view, final CharacterActionInterface characterActionInterface, Context context) {
             super(view);
             this.view = view;
             this.characterActionInterface = characterActionInterface;
             this.characterNameTextView = view.findViewById(R.id.character_name);
             this.characterImageView = view.findViewById(R.id.character_picture);
-            this.imageButtonFav = view.findViewById(R.id.imageButtonFav);
+            this.favButton = view.findViewById(R.id.imageButtonFav);
+            this.currentContext = context;
 
             setupListeners();
+
+            this.favButton.setChecked(false);
+            isFavIcon();
         }
 
         void bind(CharacterViewItem characterViewItem) {
@@ -68,11 +77,27 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
             favSetupListeners();
         }
 
+        public Context getCurrentContext() { return this.currentContext; }
+
+        private void isFavIcon() {
+            favButton.setBackgroundDrawable(ContextCompat.getDrawable(getCurrentContext() ,R.drawable.ic_outline_heart));
+        }
+
+        private void isNotFavIcon() {
+            favButton.setBackgroundDrawable(ContextCompat.getDrawable(getCurrentContext() ,R.drawable.ic_full_heart));
+        }
+
         private void favSetupListeners() {
-            imageButtonFav.setOnClickListener(new View.OnClickListener() {
+            favButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View v) {
-                    characterActionInterface.onHeartClick(characterViewItem.getCharacterID(), true);
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Log.d("FAVBUTTON", "onCheckedChanged:"+characterViewItem.getCharacterID()+" | "+isChecked);
+                    if(isChecked) {
+                        isNotFavIcon();
+                    }
+                    else {
+                        isFavIcon();
+                    }
                 }
             });
         }
@@ -80,14 +105,16 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     private CharacterActionInterface characterActionInterface;
     private List<CharacterViewItem> characterViewItemList;
+    private Context currentContext;
 
-    public CharacterAdapter(CharacterActionInterface characterActionInterface) {
+    public CharacterAdapter(CharacterActionInterface characterActionInterface, Context context) {
         this.characterViewItemList = new ArrayList<>();
         this.characterActionInterface = characterActionInterface;
+        this.currentContext = context;
     }
 
-    public CharacterAdapter() {
-        this.characterViewItemList = new ArrayList<>();
+    public Context getCurrentContext() {
+        return this.currentContext;
     }
 
     public void bindViewModels(List<CharacterViewItem> characterViewItemList) {
@@ -102,7 +129,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         Context context = parent.getContext();
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.recyclerview_item_character,parent,false);
-        return new CharacterViewHolder(view, characterActionInterface);
+        return new CharacterViewHolder(view, characterActionInterface, getCurrentContext());
     }
 
     @Override

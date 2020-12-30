@@ -89,7 +89,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
 
     private void setupRecyclerView() {
         recyclerView = rootView.findViewById(R.id.recycler_view_search);
-        characterAdapter = new CharacterAdapter(this);
+        characterAdapter = new CharacterAdapter(this, getContext());
         recyclerView.setAdapter(characterAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
