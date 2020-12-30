@@ -42,4 +42,26 @@ public class FavoriteViewModel extends ViewModel {
                 })
         );
     }
+
+    /**
+     * Method to remove a character from favorite
+     * @param id character id
+     */
+    public void deleteFromFavorite(String id){
+        compositeDisposable.add(characterDisplayRepository.deleteCharacter(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableCompletableObserver() {
+                    @Override
+                    public void onComplete() {
+                        Log.d("DELFAVORITE", "onComplete: True");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        System.out.println(e.toString());
+                    }
+                })
+        );
+    }
 }
