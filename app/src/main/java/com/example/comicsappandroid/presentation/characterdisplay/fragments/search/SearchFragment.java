@@ -4,7 +4,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -25,6 +24,7 @@ import com.example.comicsappandroid.R;
 import com.example.comicsappandroid.data.di.FakeDependencyInjection;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterActionInterface;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterAdapter;
+import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterAdapterGrid;
 import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterViewItem;
 import com.example.comicsappandroid.presentation.viewmodel.SearchViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,6 +38,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     private SearchViewModel searchViewModel;
     private RecyclerView recyclerView;
     private CharacterAdapter characterAdapter;
+    private CharacterAdapterGrid characterAdapterGrid;
     private View rootView;
 
     private SearchView searchView;
@@ -86,6 +87,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
             @Override
             public void onChanged(List<CharacterViewItem> characterViewItemList) {
                 characterAdapter.bindViewModels(characterViewItemList);
+                characterAdapterGrid.bindViewModels(characterViewItemList);
             }
         });
 
@@ -100,11 +102,12 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     private void setupRecyclerView() {
         recyclerView = rootView.findViewById(R.id.recycler_view_search);
         characterAdapter = new CharacterAdapter(this, getContext());
-        recyclerView.setAdapter(characterAdapter);
+        characterAdapterGrid = new CharacterAdapterGrid(this, getContext());
 
         linearLayoutManager = new LinearLayoutManager(getContext());
-        gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        gridLayoutManager = new GridLayoutManager(getContext(),2);
 
+        recyclerView.setAdapter(characterAdapter);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
@@ -158,10 +161,13 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
                 Log.d("FAB", "onClick: "+fabState);
                 if(fabState) {
                     fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_list));
+                    recyclerView.setAdapter(characterAdapter);
                     recyclerView.setLayoutManager(linearLayoutManager);
                 }
                 else {
+                    Log.d("FAB", "onClick: GRIID");
                     fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_grid));
+                    recyclerView.setAdapter(characterAdapterGrid);
                     recyclerView.setLayoutManager(gridLayoutManager);
                 }
                 fabState = !fabState; // Change fabState
