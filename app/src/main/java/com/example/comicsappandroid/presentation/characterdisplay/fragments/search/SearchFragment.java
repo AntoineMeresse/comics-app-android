@@ -120,7 +120,9 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
 
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                searchViewModel.searchCharacters("name:"+query);
+                searchView.clearFocus();
+                return true;
             }
 
             @Override
