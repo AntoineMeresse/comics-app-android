@@ -2,4 +2,5 @@
     <string name="app_name">ComicsAppAndroid</string>
     <string name="tab_1">Characters</string>
     <string name="tab_2">Favorite</string>
+    <string name="search">Search character from comics</string>
 </resources>
