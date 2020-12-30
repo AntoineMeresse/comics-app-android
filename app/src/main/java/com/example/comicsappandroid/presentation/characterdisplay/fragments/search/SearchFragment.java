@@ -1,6 +1,7 @@
 package com.example.comicsappandroid.presentation.characterdisplay.fragments.search;
 
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -148,10 +149,10 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
             public void onClick(View v) {
                 Log.d("FAB", "onClick: "+fabState);
                 if(fabState) {
-                    //TODO
+                    fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_list));
                 }
                 else {
-                    //TODO
+                    fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_grid));
                 }
                 fabState = !fabState; // Change fabState
             }
