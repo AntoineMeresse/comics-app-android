@@ -1,5 +1,6 @@
 package com.example.comicsappandroid.data.repository.characterdisplay;
 
+import com.example.comicsappandroid.data.api.models.CharacterComics;
 import com.example.comicsappandroid.data.api.models.CharacterSearchResponse;
 import com.example.comicsappandroid.data.database.CharacterEntity;
 import com.example.comicsappandroid.data.repository.characterdisplay.local.CharacterDisplayLocalDS;
@@ -12,6 +13,7 @@ import io.reactivex.Completable;
 import io.reactivex.CompletableSource;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
 
 public class CharacterDisplayDataRepository implements CharacterDisplayRepository {
@@ -29,7 +31,20 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
 
     @Override
     public Single<CharacterSearchResponse> getSearchResponse(String filter) {
-        return characterDisplayRemoteDS.searchCharacters(filter);
+        return characterDisplayRemoteDS.searchCharacters(filter)
+                .zipWith(characterDisplayLocalDS.getIdFavoriteCharacters(), new BiFunction<CharacterSearchResponse, List<Integer>, CharacterSearchResponse>() {
+                    @Override
+                    public CharacterSearchResponse apply(CharacterSearchResponse characterSearchResponse, List<Integer> integers) throws Exception {
+                        // Loop in characters list
+                        List<CharacterComics> characterComicsList = characterSearchResponse.getCharacterList();
+                        for (CharacterComics characterComics : characterComicsList) {
+                            if (integers.equals(characterComics.getId())) {
+                                //
+                            }
+                        }
+                        return characterSearchResponse;
+                    }
+                });
     }
 
     // ---------------------------------- Local ------------------------------------------------
