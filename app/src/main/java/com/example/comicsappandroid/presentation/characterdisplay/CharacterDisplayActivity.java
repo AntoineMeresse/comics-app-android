@@ -21,13 +21,39 @@ public class CharacterDisplayActivity extends AppCompatActivity {
     private SparseArray<Fragment> fragmentSparseArray;
     private Fragment currentFragment;
 
+    private final static String FRAGMENT_NUMBER_KEY = "Fragment_Number";
+    private final static String FRAGMENT_STORED_KEY  = "Fragment_Stored";
+    private int currentFragPos = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_display);
-
         setupNavigationElements();
-        bottomNavigationView.setSelectedItemId(R.id.item_menu_characters);
+        restoreInstance(savedInstanceState);
+    }
+
+    private void restoreInstance(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            currentFragment = getSupportFragmentManager().getFragment(savedInstanceState, FRAGMENT_STORED_KEY);
+            replaceFragment(currentFragment);
+            fragmentSparseArray.put(savedInstanceState.getInt(FRAGMENT_NUMBER_KEY), currentFragment);
+        }
+        else {
+            bottomNavigationView.setSelectedItemId(R.id.item_menu_characters);
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(FRAGMENT_NUMBER_KEY,  currentFragPos);
+        getSupportFragmentManager().putFragment(outState, FRAGMENT_STORED_KEY, currentFragment);
     }
 
     private void setupNavigationElements() {
@@ -62,6 +88,7 @@ public class CharacterDisplayActivity extends AppCompatActivity {
                             }
 
                             currentFragment = f;
+                            currentFragPos = index;
                             replaceFragment(currentFragment);
                         }
                         return true;
