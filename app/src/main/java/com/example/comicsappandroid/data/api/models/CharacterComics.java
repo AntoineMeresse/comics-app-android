@@ -36,4 +36,15 @@ public class CharacterComics {
     public void setCharacterImage(CharacterImage characterImage) {
         this.characterImage = characterImage;
     }
+
+    // ----------------------------------- Favorite Char ------------------------------------------
+    private boolean isFav;
+
+    public boolean isFav() {
+        return isFav;
+    }
+
+    public void setFav(boolean fav) {
+        isFav = fav;
+    }
 }
