@@ -2,8 +2,11 @@ package com.example.comicsappandroid.data.di;
 
 import android.content.Context;
 
+import androidx.room.Room;
+
 import com.example.comicsappandroid.CharacterComicsApplication;
 import com.example.comicsappandroid.data.api.ComicsDisplayService;
+import com.example.comicsappandroid.data.database.CharacterDatabase;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayDataRepository;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayRepository;
 import com.example.comicsappandroid.data.repository.characterdisplay.remote.CharacterDisplayRemoteDS;
@@ -31,6 +34,8 @@ public class FakeDependencyInjection {
 
     private static CharacterDisplayRepository characterDisplayRepository;
     private static ViewModelFactory viewModelFactory;
+
+    private static CharacterDatabase characterDatabase;
 
     /**
      * Method to set a context to the FakeDependencyInjection
@@ -88,6 +93,13 @@ public class FakeDependencyInjection {
     public static ViewModelFactory getViewModelFactory(){
         if (viewModelFactory == null) viewModelFactory = new ViewModelFactory(getCharacterDisplayRepository());
         return viewModelFactory;
+    }
+
+    public static CharacterDatabase getCharacterDatabase() {
+        if (characterDatabase == null) {
+            characterDatabase = Room.databaseBuilder(context, CharacterDatabase.class, "character-database").build();
+        }
+        return characterDatabase;
     }
 
 }
