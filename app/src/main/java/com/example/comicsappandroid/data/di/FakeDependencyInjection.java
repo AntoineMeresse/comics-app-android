@@ -9,6 +9,7 @@ import com.example.comicsappandroid.data.api.ComicsDisplayService;
 import com.example.comicsappandroid.data.database.CharacterDatabase;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayDataRepository;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayRepository;
+import com.example.comicsappandroid.data.repository.characterdisplay.local.CharacterDisplayLocalDS;
 import com.example.comicsappandroid.data.repository.characterdisplay.remote.CharacterDisplayRemoteDS;
 import com.example.comicsappandroid.presentation.viewmodel.ViewModelFactory;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -84,7 +85,8 @@ public class FakeDependencyInjection {
     public static CharacterDisplayRepository getCharacterDisplayRepository(){
         if (characterDisplayRepository == null) {
             characterDisplayRepository = new CharacterDisplayDataRepository(
-                    new CharacterDisplayRemoteDS(getComicsDisplayService())
+                    new CharacterDisplayRemoteDS(getComicsDisplayService()),
+                    new CharacterDisplayLocalDS(getCharacterDatabase())
             );
         }
         return characterDisplayRepository;
