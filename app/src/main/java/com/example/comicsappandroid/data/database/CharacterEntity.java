@@ -13,6 +13,8 @@ public class CharacterEntity {
 
     private String name;
 
+    private String imageUrl;
+
     public String getName() {
         return name;
     }
@@ -28,5 +30,13 @@ public class CharacterEntity {
 
     public void setId(@NonNull Integer id) {
         this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
