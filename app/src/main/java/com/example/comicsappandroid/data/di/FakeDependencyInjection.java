@@ -58,6 +58,10 @@ public class FakeDependencyInjection {
         return jsonSerializer;
     }
 
+    /**
+     * Method to get a retrofit instance
+     * @return Retrofit
+     */
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -77,11 +81,19 @@ public class FakeDependencyInjection {
         return retrofit;
     }
 
+    /**
+     * Method to get the ComicsDisplayService
+     * @return ComicsDisplayService
+     */
     public static ComicsDisplayService getComicsDisplayService() {
         if (comicsDisplayService == null) comicsDisplayService = getRetrofit().create(ComicsDisplayService.class);
         return comicsDisplayService;
     }
 
+    /**
+     * Method to get the CharacterDisplayRepository
+     * @return CharacterDisplayRepository
+     */
     public static CharacterDisplayRepository getCharacterDisplayRepository(){
         if (characterDisplayRepository == null) {
             characterDisplayRepository = new CharacterDisplayDataRepository(
@@ -92,11 +104,19 @@ public class FakeDependencyInjection {
         return characterDisplayRepository;
     }
 
+    /**
+     * Method to get the ViewModelFactory
+     * @return ViewModelFactory
+     */
     public static ViewModelFactory getViewModelFactory(){
         if (viewModelFactory == null) viewModelFactory = new ViewModelFactory(getCharacterDisplayRepository());
         return viewModelFactory;
     }
 
+    /**
+     * Method to get the CharacterDatabase
+     * @return CharacterDatabase
+     */
     public static CharacterDatabase getCharacterDatabase() {
         if (characterDatabase == null) {
             characterDatabase = Room.databaseBuilder(context, CharacterDatabase.class, "character-database").build();
