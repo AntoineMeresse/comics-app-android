@@ -99,6 +99,12 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
         return this.currentContext;
     }
 
+    public void bindViewModels(List<CharacterFavViewItem> characterFavViewItemList){
+        this.characterFavViewItemList.clear();
+        this.characterFavViewItemList.addAll(characterFavViewItemList);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public CharacterFavViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
