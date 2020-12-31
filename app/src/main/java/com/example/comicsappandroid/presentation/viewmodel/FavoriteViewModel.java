@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.comicsappandroid.data.database.CharacterEntity;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayRepository;
 import com.example.comicsappandroid.presentation.characterdisplay.favorite.adapter.CharacterFavViewItem;
+import com.example.comicsappandroid.presentation.characterdisplay.favorite.mapper.MapperCharacterEntityToCharacterFavViewItem;
 
 import java.util.List;
 
@@ -22,9 +23,12 @@ public class FavoriteViewModel extends ViewModel {
     private CharacterDisplayRepository characterDisplayRepository;
     private CompositeDisposable compositeDisposable;
 
+    private MapperCharacterEntityToCharacterFavViewItem mapperCharacterEntityToCharacterFavViewItem;
+
     public FavoriteViewModel(CharacterDisplayRepository characterDisplayRepository) {
         this.characterDisplayRepository = characterDisplayRepository;
         this.compositeDisposable = new CompositeDisposable();
+        mapperCharacterEntityToCharacterFavViewItem = new MapperCharacterEntityToCharacterFavViewItem();
     }
 
     /**
@@ -87,7 +91,8 @@ public class FavoriteViewModel extends ViewModel {
                                        @Override
                                        public void onNext(List<CharacterEntity> characterEntities) {
                                            isLoading.setValue(false);
-                                           //favs.setValue(Mapper);
+                                           favs.setValue(mapperCharacterEntityToCharacterFavViewItem
+                                                   .map(characterEntities));
                                        }
 
                                        @Override
