@@ -7,6 +7,11 @@ import com.google.gson.annotations.SerializedName;
  * https://comicvine.gamespot.com/api/documentation
  */
 public class CharacterComics {
+
+    private String name;
+    private Integer id;
+    private boolean isFav;
+
     public String getName() {
         return name;
     }
@@ -23,9 +28,6 @@ public class CharacterComics {
         this.id = id;
     }
 
-    private String name;
-    private Integer id;
-
     @SerializedName("image")
     private CharacterImage characterImage;
 
@@ -38,7 +40,6 @@ public class CharacterComics {
     }
 
     // ----------------------------------- Favorite Char ------------------------------------------
-    private boolean isFav;
 
     public boolean isFav() {
         return isFav;

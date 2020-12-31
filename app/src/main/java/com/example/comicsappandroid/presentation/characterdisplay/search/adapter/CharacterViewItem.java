@@ -4,6 +4,11 @@ import com.example.comicsappandroid.data.api.models.CharacterImage;
 
 public class CharacterViewItem {
 
+    private String characterID;
+    private String characterName;
+    private CharacterImage characterImage;
+    private boolean isFavorite;
+
     public String getCharacterID() {
         return characterID;
     }
@@ -27,11 +32,6 @@ public class CharacterViewItem {
     public void setCharacterImage(CharacterImage characterImage) {
         this.characterImage = characterImage;
     }
-
-    private String characterID;
-    private String characterName;
-    private CharacterImage characterImage;
-    private boolean isFavorite;
 
     public boolean isFavorite() {
         return isFavorite;
