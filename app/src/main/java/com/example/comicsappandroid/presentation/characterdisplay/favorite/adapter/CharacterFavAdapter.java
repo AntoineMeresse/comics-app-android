@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.comicsappandroid.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapter.CharacterFavViewHolder> {
 
     public static class CharacterFavViewHolder extends RecyclerView.ViewHolder {
@@ -80,6 +83,20 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
                 Glide.with(view).load(imgUrl).centerCrop().into(characterImageView);
             }
         }
+    }
+
+    private CharacterFavActionInterface characterFavActionInterface;
+    private List<CharacterFavViewItem> characterFavViewItemList;
+    private Context currentContext;
+
+    public CharacterFavAdapter(CharacterFavActionInterface characterFavActionInterface, Context context) {
+        this.characterFavViewItemList = new ArrayList<>();
+        this.characterFavActionInterface = characterFavActionInterface;
+        this.currentContext = context;
+    }
+
+    public Context getCurrentContext() {
+        return this.currentContext;
     }
 
     @NonNull
