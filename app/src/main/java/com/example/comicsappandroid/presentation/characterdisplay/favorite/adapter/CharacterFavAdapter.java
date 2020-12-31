@@ -51,7 +51,7 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
             this.characterFavViewItem = characterFavViewItem;
             //
             this.characterNameTextView.setText(characterFavViewItem.getCharacterName());
-            this.setupImage();
+            this.setupImage(characterFavViewItem);
         }
 
         private void setupFavButton(){
