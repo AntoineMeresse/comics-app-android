@@ -1,12 +1,10 @@
 package com.example.comicsappandroid.data.repository.characterdisplay;
 
-import android.util.Log;
-
 import com.example.comicsappandroid.data.api.models.CharacterComics;
 import com.example.comicsappandroid.data.api.models.CharacterSearchResponse;
 import com.example.comicsappandroid.data.database.CharacterEntity;
 import com.example.comicsappandroid.data.repository.characterdisplay.local.CharacterDisplayLocalDS;
-import com.example.comicsappandroid.data.repository.characterdisplay.mapper.MapperCharacterToCharacterEntity;
+import com.example.comicsappandroid.data.repository.characterdisplay.mapper.MapperCharacterSearchResponseToCharacterEntity;
 import com.example.comicsappandroid.data.repository.characterdisplay.remote.CharacterDisplayRemoteDS;
 
 import java.util.List;
@@ -62,7 +60,7 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
                 new Function<CharacterSearchResponse, CharacterEntity>() {
             @Override
             public CharacterEntity apply(CharacterSearchResponse characterSearchResponse) throws Exception {
-                return MapperCharacterToCharacterEntity.convertCharacterToCharacterEntity(characterSearchResponse);
+                return MapperCharacterSearchResponseToCharacterEntity.convertCharacterToCharacterEntity(characterSearchResponse);
             }
         });
 
@@ -88,7 +86,7 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
                 new Function<CharacterSearchResponse, CharacterEntity>() {
                     @Override
                     public CharacterEntity apply(CharacterSearchResponse characterSearchResponse) throws Exception {
-                        return MapperCharacterToCharacterEntity.convertCharacterToCharacterEntity(characterSearchResponse);
+                        return MapperCharacterSearchResponseToCharacterEntity.convertCharacterToCharacterEntity(characterSearchResponse);
                     }
                 });
 

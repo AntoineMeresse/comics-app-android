@@ -4,7 +4,7 @@ import com.example.comicsappandroid.data.api.models.CharacterComics;
 import com.example.comicsappandroid.data.api.models.CharacterSearchResponse;
 import com.example.comicsappandroid.data.database.CharacterEntity;
 
-public class MapperCharacterToCharacterEntity {
+public class MapperCharacterSearchResponseToCharacterEntity {
 
     public static CharacterEntity convertCharacterToCharacterEntity(CharacterSearchResponse characterSearchResponse) {
         CharacterEntity res = new CharacterEntity();
