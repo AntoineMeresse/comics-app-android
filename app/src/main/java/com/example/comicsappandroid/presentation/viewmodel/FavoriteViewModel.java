@@ -2,14 +2,20 @@ package com.example.comicsappandroid.presentation.viewmodel;
 
 import android.util.Log;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.comicsappandroid.data.database.CharacterEntity;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayRepository;
+import com.example.comicsappandroid.presentation.characterdisplay.favorite.adapter.CharacterFavViewItem;
+
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.ResourceSubscriber;
 
 public class FavoriteViewModel extends ViewModel {
 
@@ -63,5 +69,40 @@ public class FavoriteViewModel extends ViewModel {
                     }
                 })
         );
+    }
+
+    // Mutable LiveData
+
+    private MutableLiveData<List<CharacterFavViewItem>> favs;
+    private MutableLiveData<Boolean> isLoading;
+
+    public MutableLiveData<List<CharacterFavViewItem>> getFavs(){
+        isLoading.setValue(true);
+        if (favs == null) {
+            favs = new MutableLiveData<List<CharacterFavViewItem>>();
+            compositeDisposable.add(characterDisplayRepository.getFavoriteCharacters()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new ResourceSubscriber<List<CharacterEntity>>() {
+                                       @Override
+                                       public void onNext(List<CharacterEntity> characterEntities) {
+                                           isLoading.setValue(false);
+                                           //favs.setValue(Mapper);
+                                       }
+
+                                       @Override
+                                       public void onError(Throwable t) {
+                                           System.out.println(t.toString());
+                                           isLoading.setValue(false);
+                                       }
+
+                                       @Override
+                                       public void onComplete() {
+                                            isLoading.setValue(false);
+                                       }
+                                   }
+              ));
+        }
+        return favs;
     }
 }
