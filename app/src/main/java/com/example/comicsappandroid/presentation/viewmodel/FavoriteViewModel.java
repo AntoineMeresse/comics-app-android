@@ -78,12 +78,12 @@ public class FavoriteViewModel extends ViewModel {
     // Mutable LiveData
 
     private MutableLiveData<List<CharacterFavViewItem>> favs;
-    private MutableLiveData<Boolean> isLoading;
+    private MutableLiveData<Boolean> isLoading = new MutableLiveData<Boolean>();
 
     public MutableLiveData<List<CharacterFavViewItem>> getFavs(){
         isLoading.setValue(true);
         if (favs == null) {
-            favs = new MutableLiveData<List<CharacterFavViewItem>>();
+            favs = new MutableLiveData<>();
             compositeDisposable.add(characterDisplayRepository.getFavoriteCharacters()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

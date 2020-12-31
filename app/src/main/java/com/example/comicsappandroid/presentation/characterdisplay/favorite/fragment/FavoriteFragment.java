@@ -1,5 +1,7 @@
 package com.example.comicsappandroid.presentation.characterdisplay.favorite.fragment;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -15,9 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.comicsappandroid.R;
+import com.example.comicsappandroid.data.di.FakeDependencyInjection;
 import com.example.comicsappandroid.presentation.characterdisplay.favorite.adapter.CharacterFavActionInterface;
 import com.example.comicsappandroid.presentation.characterdisplay.favorite.adapter.CharacterFavAdapter;
+import com.example.comicsappandroid.presentation.characterdisplay.favorite.adapter.CharacterFavViewItem;
 import com.example.comicsappandroid.presentation.viewmodel.FavoriteViewModel;
+
+import java.util.List;
 
 public class FavoriteFragment extends Fragment implements CharacterFavActionInterface {
 
@@ -44,6 +50,7 @@ public class FavoriteFragment extends Fragment implements CharacterFavActionInte
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupRecyclerView();
+        registerViewModel();
     }
 
     private void setupRecyclerView() {
@@ -57,5 +64,17 @@ public class FavoriteFragment extends Fragment implements CharacterFavActionInte
     @Override
     public void removeFromFavorite(String id) {
         favoriteViewModel.deleteFromFavorite(id);
+    }
+
+    private void registerViewModel(){
+        favoriteViewModel = new ViewModelProvider(requireActivity(),
+                FakeDependencyInjection.getViewModelFactory()).get(FavoriteViewModel.class);
+
+        favoriteViewModel.getFavs().observe(getViewLifecycleOwner(), new Observer<List<CharacterFavViewItem>>() {
+            @Override
+            public void onChanged(List<CharacterFavViewItem> characterFavViewItemList) {
+                characterFavAdapter.bindViewModels(characterFavViewItemList);
+            }
+        });
     }
 }
