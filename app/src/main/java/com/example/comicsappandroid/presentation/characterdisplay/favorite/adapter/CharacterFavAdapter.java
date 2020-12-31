@@ -2,6 +2,7 @@ package com.example.comicsappandroid.presentation.characterdisplay.favorite.adap
 
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -108,7 +109,10 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
     @NonNull
     @Override
     public CharacterFavViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.recyclerview_item_favorite_characters,parent,false);
+        return new CharacterFavViewHolder(view, characterFavActionInterface, getCurrentContext());
     }
 
     @Override
