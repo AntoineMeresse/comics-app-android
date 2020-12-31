@@ -55,7 +55,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         void bind(CharacterViewItem characterViewItem) {
             this.characterViewItem = characterViewItem;
             this.characterNameTextView.setText(characterViewItem.getCharacterName());
-
+            this.favButton.setChecked(characterViewItem.isFavorite());
             this.setupImage(characterViewItem);
         }
 

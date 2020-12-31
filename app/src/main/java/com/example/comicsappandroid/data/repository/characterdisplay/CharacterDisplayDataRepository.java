@@ -1,5 +1,7 @@
 package com.example.comicsappandroid.data.repository.characterdisplay;
 
+import android.util.Log;
+
 import com.example.comicsappandroid.data.api.models.CharacterComics;
 import com.example.comicsappandroid.data.api.models.CharacterSearchResponse;
 import com.example.comicsappandroid.data.database.CharacterEntity;
@@ -38,7 +40,7 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
                         // Loop in characters list
                         List<CharacterComics> characterComicsList = characterSearchResponse.getCharacterList();
                         for (CharacterComics characterComics : characterComicsList) {
-                            if (integers.equals(characterComics.getId())) {
+                            if (integers.contains(characterComics.getId())) {
                                 characterComics.setFav(true);
                             }
                         }

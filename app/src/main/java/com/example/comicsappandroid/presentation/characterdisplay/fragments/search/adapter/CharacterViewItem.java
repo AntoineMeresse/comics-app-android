@@ -31,5 +31,13 @@ public class CharacterViewItem {
     private String characterID;
     private String characterName;
     private CharacterImage characterImage;
+    private boolean isFavorite;
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 }
