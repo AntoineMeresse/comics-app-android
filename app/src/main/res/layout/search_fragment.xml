@@ -5,7 +5,7 @@
     android:id="@+id/layout_character"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.characterdisplay.fragments.search.SearchFragment">
+    tools:context=".presentation.characterdisplay.search.SearchFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_searchbar"

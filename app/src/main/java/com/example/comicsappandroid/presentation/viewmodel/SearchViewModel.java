@@ -1,17 +1,14 @@
 package com.example.comicsappandroid.presentation.viewmodel;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.comicsappandroid.data.api.models.CharacterComics;
 import com.example.comicsappandroid.data.api.models.CharacterSearchResponse;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayRepository;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.MapperCharacterToViewModel;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterViewItem;
+import com.example.comicsappandroid.presentation.characterdisplay.search.mapper.MapperCharacterToViewModel;
+import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterViewItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;

@@ -1,4 +1,4 @@
-package com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter;
+package com.example.comicsappandroid.presentation.characterdisplay.search.adapter;
 
 import com.example.comicsappandroid.data.api.models.CharacterImage;
 

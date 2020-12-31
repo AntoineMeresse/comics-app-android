@@ -1,7 +1,7 @@
-package com.example.comicsappandroid.presentation.characterdisplay.fragments.search;
+package com.example.comicsappandroid.presentation.characterdisplay.search.mapper;
 
 import com.example.comicsappandroid.data.api.models.CharacterComics;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterViewItem;
+import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterViewItem;
 
 import java.util.ArrayList;
 import java.util.List;

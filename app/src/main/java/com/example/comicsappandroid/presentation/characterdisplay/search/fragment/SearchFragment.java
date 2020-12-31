@@ -1,4 +1,4 @@
-package com.example.comicsappandroid.presentation.characterdisplay.fragments.search;
+package com.example.comicsappandroid.presentation.characterdisplay.search.fragment;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
@@ -22,10 +22,10 @@ import android.widget.ProgressBar;
 
 import com.example.comicsappandroid.R;
 import com.example.comicsappandroid.data.di.FakeDependencyInjection;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterActionInterface;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterAdapter;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterAdapterGrid;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter.CharacterViewItem;
+import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterActionInterface;
+import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterAdapterLinear;
+import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterAdapterGrid;
+import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterViewItem;
 import com.example.comicsappandroid.presentation.viewmodel.FavoriteViewModel;
 import com.example.comicsappandroid.presentation.viewmodel.SearchViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,7 +40,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     private FavoriteViewModel favoriteViewModel;
 
     private RecyclerView recyclerView;
-    private CharacterAdapter characterAdapter;
+    private CharacterAdapterLinear characterAdapterLinear;
     private CharacterAdapterGrid characterAdapterGrid;
     private View rootView;
 
@@ -92,7 +92,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         searchViewModel.getCharacters().observe(getViewLifecycleOwner(), new Observer<List<CharacterViewItem>>() {
             @Override
             public void onChanged(List<CharacterViewItem> characterViewItemList) {
-                characterAdapter.bindViewModels(characterViewItemList);
+                characterAdapterLinear.bindViewModels(characterViewItemList);
                 characterAdapterGrid.bindViewModels(characterViewItemList);
             }
         });
@@ -107,13 +107,13 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
 
     private void setupRecyclerView() {
         recyclerView = rootView.findViewById(R.id.recycler_view_search);
-        characterAdapter = new CharacterAdapter(this, getContext());
+        characterAdapterLinear = new CharacterAdapterLinear(this, getContext());
         characterAdapterGrid = new CharacterAdapterGrid(this, getContext());
 
         linearLayoutManager = new LinearLayoutManager(getContext());
         gridLayoutManager = new GridLayoutManager(getContext(),2);
 
-        recyclerView.setAdapter(characterAdapter);
+        recyclerView.setAdapter(characterAdapterLinear);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
@@ -171,7 +171,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
                 Log.d("FAB", "onClick: "+fabState);
                 if(fabState) {
                     fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_list));
-                    recyclerView.setAdapter(characterAdapter);
+                    recyclerView.setAdapter(characterAdapterLinear);
                     recyclerView.setLayoutManager(linearLayoutManager);
                 }
                 else {

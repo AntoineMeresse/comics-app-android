@@ -1,18 +1,14 @@
-package com.example.comicsappandroid.presentation.characterdisplay.fragments.search.adapter;
+package com.example.comicsappandroid.presentation.characterdisplay.search.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,7 +17,7 @@ import com.example.comicsappandroid.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
+public class CharacterAdapterGrid extends RecyclerView.Adapter<CharacterAdapterGrid.CharacterViewHolder> {
 
     public static class CharacterViewHolder extends RecyclerView.ViewHolder {
 
@@ -41,21 +37,15 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
             super(view);
             this.view = view;
             this.characterActionInterface = characterActionInterface;
-            this.characterNameTextView = view.findViewById(R.id.character_name);
             this.characterImageView = view.findViewById(R.id.character_picture);
-            this.favButton = view.findViewById(R.id.imageButtonFav);
             this.currentContext = context;
 
             setupListeners();
-
-            this.favButton.setChecked(false);
-            isFavIcon();
         }
 
         void bind(CharacterViewItem characterViewItem) {
             this.characterViewItem = characterViewItem;
-            this.characterNameTextView.setText(characterViewItem.getCharacterName());
-            this.favButton.setChecked(characterViewItem.isFavorite());
+
             this.setupImage(characterViewItem);
         }
 
@@ -66,7 +56,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         void setupImage(CharacterViewItem characterViewItem) {
             String imgUrl = characterViewItem.getCharacterImage().getIconUrl();
             if(imgUrl != null) {
-                Glide.with(view).load(imgUrl).centerCrop().into(characterImageView);
+                Glide.with(view).load(imgUrl).centerCrop().circleCrop().into(characterImageView);
             }
         }
 
@@ -74,41 +64,16 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
          * Method to setup all listeners
          */
         private void setupListeners() {
-            favSetupListeners();
         }
 
         public Context getCurrentContext() { return this.currentContext; }
-
-        private void isFavIcon() {
-            favButton.setBackgroundDrawable(ContextCompat.getDrawable(getCurrentContext() ,R.drawable.ic_outline_heart));
-        }
-
-        private void isNotFavIcon() {
-            favButton.setBackgroundDrawable(ContextCompat.getDrawable(getCurrentContext() ,R.drawable.ic_full_heart));
-        }
-
-        private void favSetupListeners() {
-            favButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Log.d("FAVBUTTON", "onCheckedChanged:"+characterViewItem.getCharacterID()+" | "+isChecked);
-                    if(isChecked) {
-                        isNotFavIcon();
-                    }
-                    else {
-                        isFavIcon();
-                    }
-                    characterActionInterface.onHeartClick(characterViewItem.getCharacterID(), isChecked);
-                }
-            });
-        }
     }
 
     private CharacterActionInterface characterActionInterface;
     private List<CharacterViewItem> characterViewItemList;
     private Context currentContext;
 
-    public CharacterAdapter(CharacterActionInterface characterActionInterface, Context context) {
+    public CharacterAdapterGrid(CharacterActionInterface characterActionInterface, Context context) {
         this.characterViewItemList = new ArrayList<>();
         this.characterActionInterface = characterActionInterface;
         this.currentContext = context;
@@ -126,15 +91,15 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     @NonNull
     @Override
-    public CharacterAdapter.CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CharacterAdapterGrid.CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.recyclerview_item_character,parent,false);
+                .inflate(R.layout.recyclerview_item_character_grid,parent,false);
         return new CharacterViewHolder(view, characterActionInterface, getCurrentContext());
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CharacterAdapter.CharacterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CharacterAdapterGrid.CharacterViewHolder holder, int position) {
         holder.bind(this.characterViewItemList.get(position));
     }
 

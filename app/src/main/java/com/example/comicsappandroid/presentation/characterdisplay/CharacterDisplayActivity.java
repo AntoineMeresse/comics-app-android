@@ -3,7 +3,6 @@ package com.example.comicsappandroid.presentation.characterdisplay;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +10,8 @@ import android.util.SparseArray;
 import android.view.MenuItem;
 
 import com.example.comicsappandroid.R;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.favorite.FavoriteFragment;
-import com.example.comicsappandroid.presentation.characterdisplay.fragments.search.SearchFragment;
+import com.example.comicsappandroid.presentation.characterdisplay.favorite.fragment.FavoriteFragment;
+import com.example.comicsappandroid.presentation.characterdisplay.search.fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CharacterDisplayActivity extends AppCompatActivity {
