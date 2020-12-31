@@ -1,6 +1,8 @@
 package com.example.comicsappandroid.presentation.characterdisplay.favorite.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +71,8 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(!isChecked) {
                         Log.d("FAVBUTTON", "onCheckedChanged:"+isChecked);
+                        AlertDialog diaBox = askToDelete(characterFavViewItem.getCharacterID());
+                        diaBox.show();
                     }
                 }
             });
@@ -83,6 +87,31 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
             if(imgUrl != null) {
                 Glide.with(view).load(imgUrl).centerCrop().into(characterImageView);
             }
+        }
+
+
+        private AlertDialog askToDelete(final String id){
+            AlertDialog myQuittingDialogBox = new AlertDialog.Builder(currentContext)
+                    // set message, title, and icon
+                    .setTitle("Delete Character")
+                    .setMessage("Do you want to delete this character from your favorite list ?")
+                    .setIcon(R.drawable.ic_delete_icon)
+
+                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            characterFavActionInterface.removeFromFavorite(id);
+                            dialog.dismiss();
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            setupFavButton();
+                            dialog.dismiss();
+                        }
+                    })
+                    .create();
+
+            return myQuittingDialogBox;
         }
     }
 
