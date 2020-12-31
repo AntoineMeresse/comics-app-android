@@ -39,7 +39,7 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
                         List<CharacterComics> characterComicsList = characterSearchResponse.getCharacterList();
                         for (CharacterComics characterComics : characterComicsList) {
                             if (integers.equals(characterComics.getId())) {
-                                //
+                                characterComics.setFav(true);
                             }
                         }
                         return characterSearchResponse;
