@@ -117,11 +117,11 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CharacterFavViewHolder holder, int position) {
-
+        holder.bind(this.characterFavViewItemList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.characterFavViewItemList.size();
     }
 }
