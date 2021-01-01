@@ -11,6 +11,9 @@ public class CharacterComics {
     private String name;
     private Integer id;
     private boolean isFav;
+    private String realName;
+    private String siteDetailUrl;
+    private String deck;
 
     public String getName() {
         return name;
@@ -37,6 +40,30 @@ public class CharacterComics {
 
     public void setCharacterImage(CharacterImage characterImage) {
         this.characterImage = characterImage;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getSiteDetailUrl() {
+        return siteDetailUrl;
+    }
+
+    public void setSiteDetailUrl(String siteDetailUrl) {
+        this.siteDetailUrl = siteDetailUrl;
+    }
+
+    public String getDeck() {
+        return deck;
+    }
+
+    public void setDeck(String deck) {
+        this.deck = deck;
     }
 
     // ----------------------------------- Favorite Char ------------------------------------------

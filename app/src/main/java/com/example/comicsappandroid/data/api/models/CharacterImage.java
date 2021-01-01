@@ -13,6 +13,9 @@ public class CharacterImage {
     @SerializedName("medium_url")
     private String mediumUrl;
 
+    @SerializedName("screen_large_url")
+    private String screenLargeUrl;
+
     public String getIconUrl() {
         return iconUrl;
     }
@@ -35,5 +38,13 @@ public class CharacterImage {
 
     public void setMediumUrl(String mediumUrl) {
         this.mediumUrl = mediumUrl;
+    }
+
+    public String getScreenLargeUrl() {
+        return screenLargeUrl;
+    }
+
+    public void setScreenLargeUrl(String screenLargeUrl) {
+        this.screenLargeUrl = screenLargeUrl;
     }
 }
