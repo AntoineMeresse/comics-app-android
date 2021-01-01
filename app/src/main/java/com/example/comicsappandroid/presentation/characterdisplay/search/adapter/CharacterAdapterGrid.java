@@ -1,6 +1,7 @@
 package com.example.comicsappandroid.presentation.characterdisplay.search.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,9 +65,20 @@ public class CharacterAdapterGrid extends RecyclerView.Adapter<CharacterAdapterG
          * Method to setup all listeners
          */
         private void setupListeners() {
+            infoSetupListeners();
         }
 
         public Context getCurrentContext() { return this.currentContext; }
+
+        private void infoSetupListeners(){
+            characterImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Info Button", "onClick: ");
+                    characterActionInterface.startInfoActivity(characterViewItem);
+                }
+            });
+        }
     }
 
     private CharacterActionInterface characterActionInterface;
