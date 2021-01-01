@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -35,6 +37,10 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
         private ToggleButton favButton;
         private Context currentContext;
 
+        private TextView characterRealName;
+        private TextView characterDescription;
+        private ScrollView scrollView;
+
         public CharacterFavViewHolder(View view, CharacterFavActionInterface characterFavActionInterface, Context context) {
             super(view);
             this.view = view;
@@ -45,14 +51,20 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
             this.characterImageView = view.findViewById(R.id.character_picture);
             this.favButton = view.findViewById(R.id.imageButtonFav);
 
+            this.characterRealName = view.findViewById(R.id.character_real_name);
+            this.characterDescription = view.findViewById(R.id.character_description);
+
             setupFavButton();
             setupListeners();
+            setupScrollView();
         }
 
         void bind(CharacterFavViewItem characterFavViewItem) {
             this.characterFavViewItem = characterFavViewItem;
             //
             this.characterNameTextView.setText(characterFavViewItem.getCharacterName());
+            this.characterRealName.setText("Real Name : "+characterFavViewItem.getRealName());
+            this.characterDescription.setText("Description : "+characterFavViewItem.getDescription());
             this.setupImage(characterFavViewItem);
         }
 
@@ -112,6 +124,18 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
                     .create();
 
             return myQuittingDialogBox;
+        }
+
+        private void setupScrollView(){
+            this.scrollView = view.findViewById(R.id.character_scrollView);
+            scrollView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    v.onTouchEvent(event);
+                    return true;
+                }
+            });
         }
     }
 
