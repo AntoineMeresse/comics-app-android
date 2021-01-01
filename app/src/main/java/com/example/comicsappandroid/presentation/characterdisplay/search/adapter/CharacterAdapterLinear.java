@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -36,6 +37,9 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
         private ToggleButton favButton;
         private Context currentContext;
 
+        // Info Button
+        private ImageButton imageButtonInfo;
+
         public CharacterViewHolder(View view, final CharacterActionInterface characterActionInterface, Context context) {
             super(view);
             this.view = view;
@@ -43,6 +47,7 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
             this.characterNameTextView = view.findViewById(R.id.character_name);
             this.characterImageView = view.findViewById(R.id.character_picture);
             this.favButton = view.findViewById(R.id.imageButtonFav);
+            this.imageButtonInfo = view.findViewById(R.id.imageButtonInfo);
             this.currentContext = context;
 
             setupListeners();
@@ -74,6 +79,7 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
          */
         private void setupListeners() {
             favSetupListeners();
+            infoSetupListeners();
         }
 
         public Context getCurrentContext() { return this.currentContext; }
@@ -98,6 +104,15 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
                         isFavIcon();
                     }
                     characterActionInterface.onHeartClick(characterViewItem.getCharacterID(), isChecked);
+                }
+            });
+        }
+
+        private void infoSetupListeners(){
+            imageButtonInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Info Button", "onClick: ");
                 }
             });
         }
