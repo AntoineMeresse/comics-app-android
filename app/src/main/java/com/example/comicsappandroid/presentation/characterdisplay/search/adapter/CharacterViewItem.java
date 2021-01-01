@@ -11,6 +11,7 @@ public class CharacterViewItem {
 
     private String characterRealName;
     private String description;
+    private String characterPageUrl;
 
     public String getCharacterID() {
         return characterID;
@@ -58,5 +59,13 @@ public class CharacterViewItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCharacterPageUrl() {
+        return characterPageUrl;
+    }
+
+    public void setCharacterPageUrl(String characterPageUrl) {
+        this.characterPageUrl = characterPageUrl;
     }
 }

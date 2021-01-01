@@ -19,6 +19,7 @@ public class CharacterInfoDisplayActivity extends AppCompatActivity {
     private TextView nameInfo;
     private TextView realNameInfo;
     private TextView descriptionInfo;
+    private TextView urlInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class CharacterInfoDisplayActivity extends AppCompatActivity {
         setupRealName(intent);
         setupDescription(intent);
         setupImage(intent);
+        setupUrl(intent);
     }
 
     public void initViews() {
@@ -40,6 +42,7 @@ public class CharacterInfoDisplayActivity extends AppCompatActivity {
         this.nameInfo = findViewById(R.id.character_info_name);
         this.realNameInfo = findViewById(R.id.character_info_real_name);
         this.descriptionInfo = findViewById(R.id.character_info_description);
+        this.urlInfo = findViewById(R.id.character_info_page_url);
     }
 
     public void setupName(Intent i) {
@@ -60,5 +63,9 @@ public class CharacterInfoDisplayActivity extends AppCompatActivity {
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(this.imageViewInfo);
+    }
+
+    public void setupUrl(Intent i) {
+        this.urlInfo.setText(i.getStringExtra("character_page_url"));
     }
 }

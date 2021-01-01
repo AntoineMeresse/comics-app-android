@@ -15,7 +15,9 @@ public class CharacterComics {
     @SerializedName("real_name")
     private String realName;
 
+    @SerializedName("site_detail_url")
     private String siteDetailUrl;
+
     private String deck;
 
     public String getName() {
