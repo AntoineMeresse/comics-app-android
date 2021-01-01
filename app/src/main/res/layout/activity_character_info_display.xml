@@ -6,4 +6,106 @@
     android:layout_height="match_parent"
     tools:context=".presentation.characterinfodisplay.CharacterInfoDisplayActivity">
 
+    <ImageView
+        android:id="@+id/character_info_imageView"
+        android:layout_width="410dp"
+        android:layout_height="164dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/character_info_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_info_imageView"
+        tools:text="Titre" />
+
+    <TextView
+        android:id="@+id/character_info_real_name_text"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
+        android:text="Real Name :"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_info_imageView"
+        tools:text="Real Name: " />
+
+    <TextView
+        android:id="@+id/character_info_real_name"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/character_info_real_name_text"
+        app:layout_constraintTop_toBottomOf="@+id/character_info_name"
+        tools:text="Real Name Info" />
+
+    <TextView
+        android:id="@+id/character_info_page_url_text"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Website page:"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_info_real_name_text"
+        tools:text="Website page:" />
+
+    <TextView
+        android:id="@+id/character_info_page_url"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:autoLink="web"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toEndOf="@+id/character_info_page_url_text"
+        app:layout_constraintTop_toBottomOf="@+id/character_info_real_name"
+        tools:text="www.test.com" />
+
+    <TextView
+        android:id="@+id/character_info_description_text"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Description :"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_info_page_url_text"
+        tools:text="Description : " />
+
+    <TextView
+        android:id="@+id/character_info_description"
+        android:layout_width="370dp"
+        android:layout_height="330dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="24dp"
+        android:scrollbars="vertical"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_info_description_text"
+        tools:text="It's a description" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
