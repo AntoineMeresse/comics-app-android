@@ -15,6 +15,9 @@ public class CharacterEntity {
 
     private String imageUrl;
 
+    private String realName;
+    private String description;
+
     public String getName() {
         return name;
     }
@@ -38,5 +41,21 @@ public class CharacterEntity {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
