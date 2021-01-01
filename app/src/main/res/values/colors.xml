@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#B51515</color>
     <color name="colorPrimaryDark">#8F000000</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#B51515</color>
 
     <!-- TabView Colors -->
     <color name="tabviewItemColor">#8F000000</color>
