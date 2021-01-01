@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel;
 import com.example.comicsappandroid.data.api.models.CharacterComics;
 import com.example.comicsappandroid.data.api.models.CharacterSearchResponse;
 import com.example.comicsappandroid.data.repository.characterdisplay.CharacterDisplayRepository;
+import com.example.comicsappandroid.presentation.characterdisplay.favorite.adapter.CharacterFavViewItem;
 import com.example.comicsappandroid.presentation.characterdisplay.search.mapper.MapperCharacterToViewModel;
 import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterViewItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -74,5 +76,9 @@ public class SearchViewModel extends ViewModel {
     public void cancelSubscription() {
         compositeDisposable.clear();
         isDataLoading.setValue(false);
+    }
+
+    public void getEmptyList(){
+        characters.setValue(new ArrayList<CharacterViewItem>());
     }
 }

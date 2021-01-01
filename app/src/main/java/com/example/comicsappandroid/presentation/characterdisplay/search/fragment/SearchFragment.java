@@ -74,8 +74,6 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         setupRecyclerView();
         registerViewModels();
         setupFabButton();
-
-        initSearchCharacters();
     }
 
     private void initSearchCharacters() {
@@ -135,7 +133,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
             public boolean onQueryTextChange(final String newText) {
                 if (newText.length() == 0) {
                     searchViewModel.cancelSubscription();
-                    initSearchCharacters();
+                    //initSearchCharacters();
                 }
                 else {
                     queryTimer.cancel();
@@ -183,5 +181,15 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
                 fabState = !fabState; // Change fabState
             }
         });
+    }
+
+    /**
+     * Method to fix the problem of item added back to favorite when switching back to search
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
+        searchViewModel.getEmptyList();
+        if (searchView.getQuery().length() == 0) initSearchCharacters();
     }
 }
