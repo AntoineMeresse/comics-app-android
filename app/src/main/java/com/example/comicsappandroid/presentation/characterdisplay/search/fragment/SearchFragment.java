@@ -76,8 +76,9 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         setupFabButton();
     }
 
-    private void initSearchCharacters() {
-        searchViewModel.searchCharacters("");
+    private void refreshRecyclerViewForChanges() {
+        searchViewModel.getEmptyList();
+        if (searchView.getQuery().length() == 0) searchViewModel.searchCharacters("");
     }
 
     private void registerViewModels() {
@@ -133,7 +134,6 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
             public boolean onQueryTextChange(final String newText) {
                 if (newText.length() == 0) {
                     searchViewModel.cancelSubscription();
-                    //initSearchCharacters();
                 }
                 else {
                     queryTimer.cancel();
@@ -179,6 +179,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
                     recyclerView.setLayoutManager(gridLayoutManager);
                 }
                 fabState = !fabState; // Change fabState
+                refreshRecyclerViewForChanges();
             }
         });
     }
@@ -189,7 +190,6 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     @Override
     public void onStart() {
         super.onStart();
-        searchViewModel.getEmptyList();
-        if (searchView.getQuery().length() == 0) initSearchCharacters();
+        refreshRecyclerViewForChanges();
     }
 }
