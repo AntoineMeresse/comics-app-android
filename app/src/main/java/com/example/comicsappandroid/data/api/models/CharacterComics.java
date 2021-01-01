@@ -11,7 +11,10 @@ public class CharacterComics {
     private String name;
     private Integer id;
     private boolean isFav;
+
+    @SerializedName("real_name")
     private String realName;
+
     private String siteDetailUrl;
     private String deck;
 

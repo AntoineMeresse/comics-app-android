@@ -13,6 +13,8 @@ public class MapperCharacterSearchResponseToCharacterEntity {
             res.setId(character.getId());
             res.setName(character.getName());
             res.setImageUrl(character.getCharacterImage().getMediumUrl());
+            res.setRealName(character.getRealName());
+            res.setDescription(character.getDeck());
         }
         return res;
     }
