@@ -17,6 +17,8 @@ public class MapperCharacterToViewModel {
         characterViewItem.setCharacterName(character.getName()); // Set Name
         characterViewItem.setCharacterImage(character.getCharacterImage());
         characterViewItem.setFavorite(character.isFav());
+        characterViewItem.setCharacterRealName(character.getRealName());
+        characterViewItem.setDescription(character.getDeck());
         return characterViewItem;
     }
 

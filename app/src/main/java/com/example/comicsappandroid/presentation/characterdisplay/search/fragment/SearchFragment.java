@@ -162,9 +162,13 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     }
 
     @Override
-    public void startInfoActivity() {
+    public void startInfoActivity(CharacterViewItem characterViewItem) {
         Intent intent = new Intent(getActivity(), CharacterInfoDisplayActivity.class);
         // Put Extras here
+        intent.putExtra("character_name", characterViewItem.getCharacterName());
+        intent.putExtra("character_real_name", characterViewItem.getCharacterRealName());
+        intent.putExtra("character_description", characterViewItem.getDescription());
+        intent.putExtra("character_image", characterViewItem.getCharacterImage().getScreenLargeUrl());
         startActivity(intent);
     }
 

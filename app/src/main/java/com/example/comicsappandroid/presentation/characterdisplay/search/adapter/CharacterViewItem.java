@@ -9,6 +9,9 @@ public class CharacterViewItem {
     private CharacterImage characterImage;
     private boolean isFavorite;
 
+    private String characterRealName;
+    private String description;
+
     public String getCharacterID() {
         return characterID;
     }
@@ -39,5 +42,21 @@ public class CharacterViewItem {
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
+    }
+
+    public String getCharacterRealName() {
+        return characterRealName;
+    }
+
+    public void setCharacterRealName(String characterRealName) {
+        this.characterRealName = characterRealName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

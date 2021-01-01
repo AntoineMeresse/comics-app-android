@@ -114,7 +114,7 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
                 @Override
                 public void onClick(View v) {
                     Log.d("Info Button", "onClick: ");
-                    characterActionInterface.startInfoActivity();
+                    characterActionInterface.startInfoActivity(characterViewItem);
                 }
             });
         }
