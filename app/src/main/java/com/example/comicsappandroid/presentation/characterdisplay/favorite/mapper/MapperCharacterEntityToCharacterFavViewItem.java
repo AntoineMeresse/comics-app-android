@@ -16,8 +16,10 @@ public class MapperCharacterEntityToCharacterFavViewItem {
         characterFavViewItem.setCharacterID(character.getId().toString());
         characterFavViewItem.setCharacterName(character.getName());
         characterFavViewItem.setCharacterImageUrl(character.getImageUrl());
-        characterFavViewItem.setDescription(character.getDescription());
-        characterFavViewItem.setRealName(character.getRealName());
+        if(character.getRealName() == null) characterFavViewItem.setRealName("Unknown");
+        else characterFavViewItem.setRealName(character.getRealName());
+        if(character.getDescription() == null) characterFavViewItem.setDescription("Unknown");
+        else characterFavViewItem.setDescription(character.getDescription());
         return characterFavViewItem;
     }
 
