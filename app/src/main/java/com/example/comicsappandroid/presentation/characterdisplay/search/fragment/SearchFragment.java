@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.example.comicsappandroid.presentation.characterdisplay.search.adapter
 import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterAdapterLinear;
 import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterAdapterGrid;
 import com.example.comicsappandroid.presentation.characterdisplay.search.adapter.CharacterViewItem;
+import com.example.comicsappandroid.presentation.characterinfodisplay.CharacterInfoDisplayActivity;
 import com.example.comicsappandroid.presentation.viewmodel.FavoriteViewModel;
 import com.example.comicsappandroid.presentation.viewmodel.SearchViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -157,6 +159,13 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         Log.d("HEARTBUTTONCLICLED", "onHeartClick: "+characterID);
         if (isFav) favoriteViewModel.addToFavorite(characterID);
         else favoriteViewModel.deleteFromFavorite(characterID);
+    }
+
+    @Override
+    public void startInfoActivity() {
+        Intent intent = new Intent(getActivity(), CharacterInfoDisplayActivity.class);
+        // Put Extras here
+        startActivity(intent);
     }
 
     public void setupFabButton() {

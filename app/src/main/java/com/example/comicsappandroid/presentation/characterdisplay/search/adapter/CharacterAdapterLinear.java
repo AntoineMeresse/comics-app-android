@@ -1,6 +1,7 @@
 package com.example.comicsappandroid.presentation.characterdisplay.search.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -113,6 +114,7 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
                 @Override
                 public void onClick(View v) {
                     Log.d("Info Button", "onClick: ");
+                    characterActionInterface.startInfoActivity();
                 }
             });
         }
