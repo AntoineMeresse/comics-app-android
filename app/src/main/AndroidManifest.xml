@@ -12,7 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.characterinfodisplay.CharacterInfoDisplayActivity"></activity>
+        <activity
+            android:name=".presentation.characterinfodisplay.CharacterInfoDisplayActivity"
+            android:label="@string/activity_info_label"
+            android:parentActivityName=".presentation.characterdisplay.CharacterDisplayActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.characterdisplay.CharacterDisplayActivity"
+                />
+        </activity>
         <activity android:name=".presentation.characterdisplay.CharacterDisplayActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
