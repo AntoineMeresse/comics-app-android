@@ -25,6 +25,9 @@ import com.example.comicsappandroid.presentation.viewmodel.FavoriteViewModel;
 
 import java.util.List;
 
+/**
+ * Favorite Fragment
+ */
 public class FavoriteFragment extends Fragment implements CharacterFavActionInterface {
 
     private FavoriteViewModel favoriteViewModel;
@@ -53,6 +56,9 @@ public class FavoriteFragment extends Fragment implements CharacterFavActionInte
         registerViewModel();
     }
 
+    /**
+     * Method to setup the favorite Recycler view
+     */
     private void setupRecyclerView() {
         this.recyclerView = rootView.findViewById(R.id.recycler_view_favorite);
         this.characterFavAdapter = new CharacterFavAdapter(this, getContext());
@@ -66,6 +72,9 @@ public class FavoriteFragment extends Fragment implements CharacterFavActionInte
         favoriteViewModel.deleteFromFavorite(id);
     }
 
+    /**
+     * Method to register the Favorite VIew model
+     */
     private void registerViewModel(){
         favoriteViewModel = new ViewModelProvider(requireActivity(),
                 FakeDependencyInjection.getViewModelFactory()).get(FavoriteViewModel.class);

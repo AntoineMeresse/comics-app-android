@@ -6,6 +6,9 @@ import com.example.comicsappandroid.presentation.characterdisplay.favorite.adapt
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Mapper to map CharacterEntity infos to a CharacterFavViewItem object.
+ */
 public class MapperCharacterEntityToCharacterFavViewItem {
 
     private CharacterFavViewItem characterFavViewItem;

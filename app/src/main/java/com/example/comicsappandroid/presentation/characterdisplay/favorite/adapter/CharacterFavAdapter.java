@@ -41,6 +41,12 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
         private TextView characterDescription;
         private ScrollView scrollView;
 
+        /**
+         * Constructor
+         * @param view View
+         * @param characterFavActionInterface CharacterFavActionInterface
+         * @param context Context
+         */
         public CharacterFavViewHolder(View view, CharacterFavActionInterface characterFavActionInterface, Context context) {
             super(view);
             this.view = view;
@@ -59,6 +65,10 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
             setupScrollView();
         }
 
+        /**
+         * Method to bind datas
+         * @param characterFavViewItem
+         */
         void bind(CharacterFavViewItem characterFavViewItem) {
             this.characterFavViewItem = characterFavViewItem;
             //
@@ -68,15 +78,24 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
             this.setupImage(characterFavViewItem);
         }
 
+        /**
+         * Method to setup FavButton
+         */
         private void setupFavButton(){
             this.favButton.setChecked(true);
             favButton.setBackgroundDrawable(ContextCompat.getDrawable(this.currentContext,R.drawable.ic_full_heart));
         }
 
+        /**
+         * Method to setup Listeners
+         */
         private void setupListeners() {
             favSetupListeners();
         }
 
+        /**
+         * Method to setup Listener for the fav button
+         */
         private void favSetupListeners() {
             favButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -101,7 +120,11 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
             }
         }
 
-
+        /**
+         * Method for the confirmation alert dialog when delete button clicked
+         * @param id String
+         * @return AlertDialog
+         */
         private AlertDialog askToDelete(final String id){
             AlertDialog myQuittingDialogBox = new AlertDialog.Builder(currentContext)
                     // set message, title, and icon
@@ -126,6 +149,9 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
             return myQuittingDialogBox;
         }
 
+        /**
+         * Method to setup the scoll view for the description
+         */
         private void setupScrollView(){
             this.scrollView = view.findViewById(R.id.character_scrollView);
             scrollView.setOnTouchListener(new View.OnTouchListener() {
@@ -143,16 +169,29 @@ public class CharacterFavAdapter extends RecyclerView.Adapter<CharacterFavAdapte
     private List<CharacterFavViewItem> characterFavViewItemList;
     private Context currentContext;
 
+    /**
+     * Constructor
+     * @param characterFavActionInterface CharacterFavActionInterface
+     * @param context Context
+     */
     public CharacterFavAdapter(CharacterFavActionInterface characterFavActionInterface, Context context) {
         this.characterFavViewItemList = new ArrayList<>();
         this.characterFavActionInterface = characterFavActionInterface;
         this.currentContext = context;
     }
 
+    /**
+     * Method to get the current context
+     * @return Context
+     */
     public Context getCurrentContext() {
         return this.currentContext;
     }
 
+    /**
+     * Method to bind View Models
+     * @param characterFavViewItemList List<CharacterFavViewItem>
+     */
     public void bindViewModels(List<CharacterFavViewItem> characterFavViewItemList){
         this.characterFavViewItemList.clear();
         this.characterFavViewItemList.addAll(characterFavViewItemList);

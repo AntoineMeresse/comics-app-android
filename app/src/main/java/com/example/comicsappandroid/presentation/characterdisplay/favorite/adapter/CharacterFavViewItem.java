@@ -1,5 +1,8 @@
 package com.example.comicsappandroid.presentation.characterdisplay.favorite.adapter;
 
+/**
+ * Character Fav View item Object
+ */
 public class CharacterFavViewItem {
 
     private String characterID;
