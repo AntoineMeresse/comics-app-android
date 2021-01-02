@@ -81,6 +81,7 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
     private void refreshRecyclerViewForChanges() {
         searchViewModel.getEmptyList();
         if (searchView.getQuery().length() == 0) searchViewModel.searchCharacters("");
+        else searchViewModel.searchCharacters("name:"+searchView.getQuery());
     }
 
     private void registerViewModels() {
