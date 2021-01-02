@@ -183,13 +183,13 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
             public void onClick(View v) {
                 Log.d("FAB", "onClick: "+fabState);
                 if(fabState) {
-                    fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_list));
+                    fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_grid));
                     recyclerView.setAdapter(characterAdapterLinear);
                     recyclerView.setLayoutManager(linearLayoutManager);
                 }
                 else {
                     Log.d("FAB", "onClick: GRIID");
-                    fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_grid));
+                    fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_fab_list));
                     recyclerView.setAdapter(characterAdapterGrid);
                     recyclerView.setLayoutManager(gridLayoutManager);
                 }
