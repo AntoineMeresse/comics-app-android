@@ -5,6 +5,9 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+/**
+ * ComicDisplayService interface
+ */
 public interface ComicsDisplayService {
     @GET("characters")
     Single<CharacterSearchResponse> searchCharacters(@Query("api_key") String apiKey, @Query("format") String format, @Query("filter") String filter);

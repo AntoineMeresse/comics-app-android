@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Character Entity for Room
+ */
 @Entity(tableName = "characters_entity")
 public class CharacterEntity {
 

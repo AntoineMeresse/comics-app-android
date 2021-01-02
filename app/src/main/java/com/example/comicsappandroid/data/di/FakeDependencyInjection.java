@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * This FakeDependencyInjection is inspired from our Android Class Tutorial.
- * This will be used for now and replace if I have time with real dependency injection framework.
+ * It allows us to fake the usage of a Dependency injection such as Dagger2
  */
 public class FakeDependencyInjection {
 

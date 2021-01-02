@@ -11,6 +11,9 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
+/**
+ * Room DAO for characters
+ */
 @Dao
 public interface CharacterDAO {
 

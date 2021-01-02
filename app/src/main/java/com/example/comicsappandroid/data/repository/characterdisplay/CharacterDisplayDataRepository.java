@@ -29,6 +29,11 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
 
     // ---------------------------------- Remote ------------------------------------------------
 
+    /**
+     * Method to get a single of CharacterSearchResponse
+     * @param filter
+     * @return Single<CharacterSearchResponse>
+     */
     @Override
     public Single<CharacterSearchResponse> getSearchResponse(String filter) {
         return characterDisplayRemoteDS.searchCharacters(filter)
@@ -49,6 +54,11 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
 
     // ---------------------------------- Local ------------------------------------------------
 
+    /**
+     * Method to add a character to the local storage
+     * @param id String
+     * @return Completable
+     */
     @Override
     public Completable insertCharacter(String id) {
         // step 1:
@@ -75,6 +85,11 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
         return characterCompletable;
     }
 
+    /**
+     * Method to delete a character to the local storage
+     * @param id String
+     * @return Completable
+     */
     @Override
     public Completable deleteCharacter(String id) {
         // step 1:
@@ -101,6 +116,10 @@ public class CharacterDisplayDataRepository implements CharacterDisplayRepositor
         return characterCompletable;
     }
 
+    /**
+     * Method to get Favorite Characters from local storage
+     * @return Flowable<List<CharacterEntity>>
+     */
     @Override
     public Flowable<List<CharacterEntity>> getFavoriteCharacters() {
         return characterDisplayLocalDS.getFavoriteCharacters();

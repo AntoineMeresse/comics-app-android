@@ -2,6 +2,9 @@ package com.example.comicsappandroid.data.api.models;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Object to stock images info of a Character
+ */
 public class CharacterImage {
 
     @SerializedName("icon_url")

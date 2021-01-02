@@ -9,6 +9,9 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
+/**
+ * Character Display Repository interface
+ */
 public interface CharacterDisplayRepository {
     // Remote
     Single<CharacterSearchResponse> getSearchResponse(String filter);
