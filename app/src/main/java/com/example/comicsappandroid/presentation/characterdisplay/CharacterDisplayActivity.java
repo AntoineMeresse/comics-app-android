@@ -14,6 +14,9 @@ import com.example.comicsappandroid.presentation.characterdisplay.favorite.fragm
 import com.example.comicsappandroid.presentation.characterdisplay.search.fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * Character Display Activity : Main
+ */
 public class CharacterDisplayActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
@@ -32,6 +35,10 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         restoreInstance(savedInstanceState);
     }
 
+    /**
+     * Method to restore Instance
+     * @param savedInstanceState Bundle
+     */
     private void restoreInstance(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             currentFragment = getSupportFragmentManager().getFragment(savedInstanceState, FRAGMENT_STORED_KEY);
@@ -55,6 +62,9 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         getSupportFragmentManager().putFragment(outState, FRAGMENT_STORED_KEY, currentFragment);
     }
 
+    /**
+     * Method to setup bottom navigation bar actions
+     */
     private void setupNavigationElements() {
 
         fragmentSparseArray = new SparseArray<>(2);
@@ -107,6 +117,10 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         return -1;
     }
 
+    /**
+     * Method to replace the current fragment
+     * @param newFragment Fragment
+     */
     private void replaceFragment(Fragment newFragment) {
         if (newFragment != null) {
             getSupportFragmentManager().beginTransaction()
