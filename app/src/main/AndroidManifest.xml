@@ -16,6 +16,7 @@
             android:name=".presentation.characterinfodisplay.CharacterInfoDisplayActivity"
             android:label="@string/activity_info_label"
             android:parentActivityName=".presentation.characterdisplay.CharacterDisplayActivity"
+            android:screenOrientation="portrait"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

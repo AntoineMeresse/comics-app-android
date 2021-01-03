@@ -32,15 +32,15 @@
 
         <ImageView
             android:id="@+id/character_picture"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.71"
+            app:layout_constraintVertical_bias="0.72"
             tools:src="@drawable/ic_launcher_background" />
 
         <ToggleButton
