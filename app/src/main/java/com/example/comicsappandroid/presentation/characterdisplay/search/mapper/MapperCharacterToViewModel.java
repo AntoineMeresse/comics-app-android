@@ -6,6 +6,9 @@ import com.example.comicsappandroid.presentation.characterdisplay.search.adapter
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Mapper to map Character infos to a CharacterViewItem object.
+ */
 public class MapperCharacterToViewModel {
 
     private CharacterViewItem characterViewItem;

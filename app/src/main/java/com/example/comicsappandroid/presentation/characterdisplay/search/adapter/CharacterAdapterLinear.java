@@ -41,6 +41,12 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
         // Info Button
         private ImageButton imageButtonInfo;
 
+        /**
+         * Constructor
+         * @param view View
+         * @param characterActionInterface CharacterActionInterface
+         * @param context Context
+         */
         public CharacterViewHolder(View view, final CharacterActionInterface characterActionInterface, Context context) {
             super(view);
             this.view = view;
@@ -57,6 +63,10 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
             isFavIcon();
         }
 
+        /**
+         * Method to bind datas
+         * @param characterViewItem
+         */
         void bind(CharacterViewItem characterViewItem) {
             this.characterViewItem = characterViewItem;
             this.characterNameTextView.setText(characterViewItem.getCharacterName());
@@ -83,16 +93,29 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
             infoSetupListeners();
         }
 
+        /**
+         * Method to get the current context
+         * @return
+         */
         public Context getCurrentContext() { return this.currentContext; }
 
+        /**
+         * Method to set the fav icon to outline heart
+         */
         private void isFavIcon() {
             favButton.setBackgroundDrawable(ContextCompat.getDrawable(getCurrentContext() ,R.drawable.ic_outline_heart));
         }
 
+        /**
+         * Method to set the fav icon to full heart
+         */
         private void isNotFavIcon() {
             favButton.setBackgroundDrawable(ContextCompat.getDrawable(getCurrentContext() ,R.drawable.ic_full_heart));
         }
 
+        /**
+         * Method to setup listener for the fav button
+         */
         private void favSetupListeners() {
             favButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -109,6 +132,9 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
             });
         }
 
+        /**
+         * Method to setup Listeners for the info button
+         */
         private void infoSetupListeners(){
             imageButtonInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -124,16 +150,29 @@ public class CharacterAdapterLinear extends RecyclerView.Adapter<CharacterAdapte
     private List<CharacterViewItem> characterViewItemList;
     private Context currentContext;
 
+    /**
+     * Constructor
+     * @param characterActionInterface CharacterActionInterface
+     * @param context Context
+     */
     public CharacterAdapterLinear(CharacterActionInterface characterActionInterface, Context context) {
         this.characterViewItemList = new ArrayList<>();
         this.characterActionInterface = characterActionInterface;
         this.currentContext = context;
     }
 
+    /**
+     * Method to get the current context
+     * @return Context
+     */
     public Context getCurrentContext() {
         return this.currentContext;
     }
 
+    /**
+     * Method to bind the View Models
+     * @param characterViewItemList List<CharacterViewItem>
+     */
     public void bindViewModels(List<CharacterViewItem> characterViewItemList) {
         this.characterViewItemList.clear();
         this.characterViewItemList.addAll(characterViewItemList);

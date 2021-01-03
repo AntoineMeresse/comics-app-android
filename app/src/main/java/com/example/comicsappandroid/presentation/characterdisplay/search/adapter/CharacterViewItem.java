@@ -2,6 +2,9 @@ package com.example.comicsappandroid.presentation.characterdisplay.search.adapte
 
 import com.example.comicsappandroid.data.api.models.CharacterImage;
 
+/**
+ * Character View item Object
+ */
 public class CharacterViewItem {
 
     private String characterID;

@@ -36,6 +36,9 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Search Fragment
+ */
 public class SearchFragment extends Fragment implements CharacterActionInterface {
 
     private SearchViewModel searchViewModel;
@@ -78,12 +81,18 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         setupFabButton();
     }
 
+    /**
+     * Method to refresh Recycler view to update with curreent datas (fav)
+     */
     private void refreshRecyclerViewForChanges() {
         searchViewModel.getEmptyList();
         if (searchView.getQuery().length() == 0) searchViewModel.searchCharacters("");
         else searchViewModel.searchCharacters("name:"+searchView.getQuery());
     }
 
+    /**
+     * Method to register View Models
+     */
     private void registerViewModels() {
         searchViewModel = new ViewModelProvider(requireActivity(),
                 FakeDependencyInjection.getViewModelFactory()).get(SearchViewModel.class);
@@ -107,6 +116,9 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         });
     }
 
+    /**
+     * Method to setup the recycler view
+     */
     private void setupRecyclerView() {
         recyclerView = rootView.findViewById(R.id.recycler_view_search);
         characterAdapterLinear = new CharacterAdapterLinear(this, getContext());
@@ -119,6 +131,9 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
+    /**
+     * Method to setup the Search View
+     */
     private void setupSearchView() {
         searchView = rootView.findViewById(R.id.searchView);
 
@@ -174,6 +189,9 @@ public class SearchFragment extends Fragment implements CharacterActionInterface
         startActivity(intent);
     }
 
+    /**
+     * Method to setup the fab Button
+     */
     public void setupFabButton() {
         fab = rootView.findViewById(R.id.floatingActionButtonChangeGrid);
         fabState = false;
