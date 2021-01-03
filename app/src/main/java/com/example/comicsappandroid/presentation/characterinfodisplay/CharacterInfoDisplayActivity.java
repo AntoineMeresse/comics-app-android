@@ -11,6 +11,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.comicsappandroid.R;
 
+/**
+ * Character Info Display Activity
+ */
 public class CharacterInfoDisplayActivity extends AppCompatActivity {
 
 
@@ -37,6 +40,9 @@ public class CharacterInfoDisplayActivity extends AppCompatActivity {
         setupUrl(intent);
     }
 
+    /**
+     * Method to init views
+     */
     public void initViews() {
         this.imageViewInfo = findViewById(R.id.character_info_imageView);
         this.nameInfo = findViewById(R.id.character_info_name);
@@ -45,18 +51,34 @@ public class CharacterInfoDisplayActivity extends AppCompatActivity {
         this.urlInfo = findViewById(R.id.character_info_page_url);
     }
 
+    /**
+     * Method to setup character name
+     * @param i Intent
+     */
     public void setupName(Intent i) {
         this.nameInfo.setText(i.getStringExtra("character_name"));
     }
 
+    /**
+     * Method to setup character real name
+     * @param i Intent
+     */
     public void setupRealName(Intent i) {
         this.realNameInfo.setText(i.getStringExtra("character_real_name"));
     }
 
+    /**
+     * Method to setup character description
+     * @param i Intent
+     */
     public void setupDescription(Intent i) {
         this.descriptionInfo.setText(i.getStringExtra("character_description"));
     }
 
+    /**
+     * Method to setup character image
+     * @param i Intent
+     */
     public void setupImage(Intent i) {
         Glide.with(this)
                 .load(i.getStringExtra("character_image"))
@@ -65,6 +87,10 @@ public class CharacterInfoDisplayActivity extends AppCompatActivity {
                 .into(this.imageViewInfo);
     }
 
+    /**
+     * Method to setup character url
+     * @param i Intent
+     */
     public void setupUrl(Intent i) {
         this.urlInfo.setText(i.getStringExtra("character_page_url"));
     }
