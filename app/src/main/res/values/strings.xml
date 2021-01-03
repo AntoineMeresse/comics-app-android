@@ -5,4 +5,8 @@
     <string name="search">Search character from comics</string>
 
     <string name="activity_info_label">Character Page Info</string>
+
+    <string name="activity_info_real_name">Real Name :</string>
+    <string name="activity_info_url">Website page:</string>
+    <string name="activity_info_description">Real Name :</string>
 </resources>
