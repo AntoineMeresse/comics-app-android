@@ -25,6 +25,10 @@ public class SearchViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable;
     private MapperCharacterToViewModel mapperCharacterToViewModel;
 
+    /**
+     * Construcotr
+     * @param characterDisplayRepository CharacterDisplayRepository
+     */
     public SearchViewModel(CharacterDisplayRepository characterDisplayRepository){
         this.characterDisplayRepository = characterDisplayRepository;
         compositeDisposable = new CompositeDisposable();
@@ -37,16 +41,28 @@ public class SearchViewModel extends ViewModel {
 
     // Getters
 
+    /**
+     * Method to get isDataLoading
+     * @return MutableLiveData<Boolean>
+     */
     public MutableLiveData<Boolean> getIsDataLoading() {
         return this.isDataLoading;
     }
 
+    /**
+     * Method to get Characters
+     * @return MutableLiveData<List<CharacterViewItem>>
+     */
     public MutableLiveData<List<CharacterViewItem>> getCharacters(){
         return this.characters;
     }
 
     // Search Character
 
+    /**
+     * Method to search Characters
+     * @param filter String
+     */
     public void searchCharacters(String filter) {
         isDataLoading.postValue(true);
         compositeDisposable.clear();
@@ -73,11 +89,18 @@ public class SearchViewModel extends ViewModel {
         );
     }
 
+    /**
+     * Method to cancel the subscription.
+     * Inspired from Android course
+     */
     public void cancelSubscription() {
         compositeDisposable.clear();
         isDataLoading.setValue(false);
     }
 
+    /**
+     * Method to get an Empty list for the recycler view
+     */
     public void getEmptyList(){
         characters.setValue(new ArrayList<CharacterViewItem>());
     }

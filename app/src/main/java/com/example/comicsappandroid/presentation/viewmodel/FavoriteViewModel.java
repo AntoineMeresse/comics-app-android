@@ -25,6 +25,10 @@ public class FavoriteViewModel extends ViewModel {
 
     private MapperCharacterEntityToCharacterFavViewItem mapperCharacterEntityToCharacterFavViewItem;
 
+    /**
+     * Constructor
+     * @param characterDisplayRepository CharacterDisplayRepository
+     */
     public FavoriteViewModel(CharacterDisplayRepository characterDisplayRepository) {
         this.characterDisplayRepository = characterDisplayRepository;
         this.compositeDisposable = new CompositeDisposable();
@@ -80,6 +84,10 @@ public class FavoriteViewModel extends ViewModel {
     private MutableLiveData<List<CharacterFavViewItem>> favs;
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<Boolean>();
 
+    /**
+     * Method to get favorite characters
+     * @return MutableLiveData<List<CharacterFavViewItem>>
+     */
     public MutableLiveData<List<CharacterFavViewItem>> getFavs(){
         isLoading.setValue(true);
         if (favs == null) {
